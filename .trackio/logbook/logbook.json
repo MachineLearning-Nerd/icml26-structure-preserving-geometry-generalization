@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Geo-NeW FEEC Conservation (RtnSbA5AUV)",
+  "emoji": "🌊",
+  "space_id": "DineshAI/RtnSbA5AUV",
+  "paper": {"arxiv_id": "2602.02788", "openreview_id": "RtnSbA5AUV", "title": "Structure-Preserving Learning Improves Geometry Generalization in Neural PDEs (Geo-NeW)"},
+  "tags": ["icml2026-repro", "paper-RtnSbA5AUV"],
+  "updated_at": "2026-07-17T22:05:00+00:00",
+  "root": {
+    "slug": "index",
+    "title": "Repro - Geo-NeW FEEC Conservation (RtnSbA5AUV)",
+    "file": "pages/index.md",
+    "children": [
+      {"slug": "claim-conservation", "title": "Claim 1 — FEEC exact conservation", "file": "pages/claim-conservation/page.md", "children": []},
+      {"slug": "methods-environment", "title": "Methods & environment", "file": "pages/methods-environment/page.md", "children": []},
+      {"slug": "negative-controls", "title": "Negative controls", "file": "pages/negative-controls/page.md", "children": []},
+      {"slug": "conclusion", "title": "Conclusion", "file": "pages/conclusion/page.md", "children": []}
+    ]
+  },
+  "agent_view_tokens": 103,
+  "revision": "1784324000000000000"
+}
