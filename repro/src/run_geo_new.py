@@ -98,7 +98,8 @@ def main():
     os.makedirs(os.path.dirname(out), exist_ok=True)
     json.dump(res, open(out, "w"), indent=2)
     print("wrote", out)
+    return 0 if verified else 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

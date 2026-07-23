@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 *.egg-info/
 outputs/
+.openresearch/cache/
 vendor/
 wandb/
 .DS_Store
