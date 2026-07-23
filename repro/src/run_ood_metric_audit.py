@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run Geo-NeW claim C2's pinned-source metric audit."""
+"""Run Geo-NeW's pinned-source OOD metric audit."""
 from __future__ import annotations
 
 import argparse
@@ -30,8 +30,8 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(audit, indent=2) + "\n", encoding="utf-8")
 
-    print("Geo-NeW C2: OOD metric-contract audit")
-    print("claim verdict:", audit["claim_2_verdict"])
+    print("Geo-NeW OOD source metric-contract audit")
+    print("empirical claim verdict:", audit["empirical_claim_verdict"])
     print("paper metric:", audit["metric_contract"]["paper_metric"])
     print("claim metric:", audit["metric_contract"]["claim_metric"])
     for row in audit["table_1_best_alternative_reductions"]:
@@ -57,4 +57,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
