@@ -129,6 +129,48 @@ def main() -> int:
             str(metric_output),
         ],
     )
+    release_output = ARTIFACTS / "release_asset_audit" / "raw_results.json"
+    durations["release_asset_audit"] = run_stage(
+        "release_asset_audit",
+        [
+            sys.executable,
+            "repro/src/run_release_asset_audit.py",
+            "--output",
+            str(release_output),
+        ],
+    )
+    release_audit = json.loads(release_output.read_text())
+    expected_verdicts = {
+        "1": "VERIFIED",
+        "2": "BLOCKED",
+        "3": "BLOCKED",
+        "4": "BLOCKED",
+        "5": "VERIFIED",
+        "6": "BLOCKED",
+    }
+    if release_audit["claim_verdicts"] != expected_verdicts:
+        raise RuntimeError("release asset audit produced unexpected claim verdicts")
+    for claim in ("2", "3", "4", "6"):
+        write_json(
+            ARTIFACTS / f"claim_{claim}" / "raw_results.json",
+            {
+                "verdict": "BLOCKED",
+                "missing_requirements": release_audit[
+                    "missing_requirements_by_claim"
+                ][claim],
+                "official_git_sha": release_audit["audit_scope"][
+                    "official_git_sha"
+                ],
+            },
+        )
+        write_json(
+            ARTIFACTS / f"claim_{claim}" / "independent_checker_output.json",
+            release_audit["independent_checker_output"],
+        )
+        write_json(
+            ARTIFACTS / f"claim_{claim}" / "negative_control_output.json",
+            release_audit["negative_control_output"],
+        )
     durations["independent_tests"] = run_stage(
         "independent_tests",
         [
@@ -144,7 +186,9 @@ def main() -> int:
 
     summary = {
         "baseline_regressions": {"claim_1": "VERIFIED", "claim_5": "VERIFIED"},
-        "source_metric_audit": "PASS",
+        "source_metric_audit": "PASS_AUDIT_ONLY",
+        "release_asset_audit": "PASS",
+        "claim_verdicts": expected_verdicts,
         "independent_tests": "PASS",
         "durations_seconds": durations,
         "total_runtime_seconds": time.monotonic() - started,
@@ -155,7 +199,9 @@ def main() -> int:
         "# EVAL\n\n"
         "- Claim 1: VERIFIED — exact FEEC/incidence identities and perturbation control pass.\n"
         "- Claim 5: VERIFIED — exact Dirichlet construction and unconstrained control pass.\n"
-        "- Source metric audit: PASS — pinned arXiv source contract is unchanged.\n"
+        "- Claims 2, 3, 4, 6: BLOCKED — required empirical assets are absent from the pinned public release.\n"
+        "- Source metric audit: PASS (audit only) — pinned arXiv source contract is unchanged.\n"
+        "- Release asset audit: PASS — both scanners agree; injected complete-release control clears every blocker.\n"
         "- Independent test suite: PASS.\n\n"
         f"Total runtime: {summary['total_runtime_seconds']:.6f} seconds.\n"
         f"Git SHA: `{metadata['git_sha']}`.\n"

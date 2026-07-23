@@ -30,7 +30,7 @@ def test_mild_regime_squaring_is_only_a_proxy_and_still_not_65():
     assert mild["direct_l2_reduction_percent"] == "39.923664"
     assert mild["squared_aggregate_proxy_percent"] == "63.908339"
     assert audit["metric_contract"]["same_metric"] is False
-    assert audit["claim_2_verdict"] == "FALSIFIED_AS_WRITTEN"
+    assert audit["empirical_claim_verdict"] == "NOT_DECIDED_BY_SOURCE_AUDIT"
 
 
 def test_squaring_changes_the_metric_and_the_result():

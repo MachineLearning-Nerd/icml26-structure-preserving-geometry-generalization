@@ -1,0 +1,21 @@
+{
+  "claim_id": 6,
+  "paper_statement": "On angled-step geometries, Transolver predictions cease to be meaningful beyond 20 degrees while Geo-NeW remains meaningful through the tested 30-degree range.",
+  "source_anchor": "main.tex, Figure 1 caption, Section 4.4, and Figure 6",
+  "assumptions": [
+    "The paper's custom NS2d-c++ angled-step generator, PDE solves, split, and evaluation grid are used.",
+    "The paper's trained Transolver and Geo-NeW models or faithful training pipelines are used.",
+    "All tested step angles through 30 degrees are evaluated."
+  ],
+  "acceptance": {
+    "verified": "A preregistered angle sweep on the paper distribution confirms the comparative behavior using an explicit failure criterion tied to the paper evaluation.",
+    "falsified": "A faithful angle sweep contradicts the quantified range comparison."
+  },
+  "required_inputs": [
+    "custom NS2d-c++ angled-step data/generator and reference PDE solutions",
+    "trained Transolver and Geo-NeW checkpoints or complete training pipelines",
+    "an operational definition of the paper's qualitative phrase 'cease to be meaningful'"
+  ],
+  "rejection_rule": "A hand-drawn step, forward-pass smoke test, source figure inspection, or arbitrary failure threshold cannot decide the claim.",
+  "status": "BLOCKED"
+}

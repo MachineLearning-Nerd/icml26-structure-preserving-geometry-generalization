@@ -183,7 +183,7 @@ def build_audit(source_tar: Path | None = None) -> dict[str, Any]:
             "arxiv_version": ARXIV_VERSION,
         },
         "claim": CLAIM,
-        "claim_2_verdict": "FALSIFIED_AS_WRITTEN",
+        "empirical_claim_verdict": "NOT_DECIDED_BY_SOURCE_AUDIT",
         "metric_contract": {
             "claim_metric": "MSE",
             "paper_metric": "mean per-sample normalized L2 error",
@@ -212,7 +212,8 @@ def build_audit(source_tar: Path | None = None) -> dict[str, Any]:
         },
         "interpretation": (
             "The paper supports an OOD advantage in normalized L2 error, but the challenge's "
-            "specific 65% MSE statement is not a reported or derivable statistic."
+            "specific 65% MSE statement is not a reported or derivable statistic. This source "
+            "audit does not verify or falsify model performance."
         ),
     }
     if source_tar is not None:

@@ -1,0 +1,23 @@
+{
+  "claim_id": 3,
+  "paper_statement": "On the standard Elasticity benchmark, Geo-NeW obtains 0.351e-2 error, a 29% reduction from LaMO at 0.50e-2.",
+  "source_anchor": "main.tex, Section 4.4 and Table 2; Appendix Table 5 and Table 6",
+  "assumptions": [
+    "The standard 1000-train/200-test Elasticity split and 972-node meshes are used.",
+    "The reported derived von Mises quantity and mean per-sample normalized L2 metric are used.",
+    "Geo-NeW uses P=32 and the paper's 10000-epoch configuration.",
+    "The released preprocessing exactly matches the paper's model inputs."
+  ],
+  "acceptance": {
+    "verified": "Independent evaluation of a released checkpoint, or adequately powered faithful retraining, reproduces both the absolute error and reduction under the exact split and metric.",
+    "falsified": "A faithful evaluation or adequately powered faithful retraining satisfying every assumption contradicts the result."
+  },
+  "required_inputs": [
+    "standard Elasticity raw data",
+    "Geo-NeW Elasticity mesh/FEM preprocessing",
+    "exact training configuration including optimizer details",
+    "released Elasticity checkpoint or feasible faithful retraining"
+  ],
+  "rejection_rule": "A scalar proxy, source-table audit, toy geometry, or alternative architecture cannot decide the claim.",
+  "status": "BLOCKED"
+}
