@@ -140,6 +140,24 @@ def main() -> int:
         ],
     )
     release_audit = json.loads(release_output.read_text())
+    toy_output = ARTIFACTS / "toy_mechanism_suite" / "raw_results.json"
+    toy_csv = ARTIFACTS / "toy_mechanism_suite" / "raw_cases.csv"
+    durations["toy_mechanism_suite"] = run_stage(
+        "toy_mechanism_suite",
+        [
+            sys.executable,
+            "repro/src/run_toy_mechanism_suite.py",
+            "--output",
+            str(toy_output),
+            "--csv",
+            str(toy_csv),
+        ],
+    )
+    toy_suite = json.loads(toy_output.read_text())
+    if toy_suite["scale_label"] != "TOY":
+        raise RuntimeError("toy mechanism suite lost its mandatory scope label")
+    if not toy_suite["independent_checker"]["passed"]:
+        raise RuntimeError("toy mechanism suite independent checker failed")
     expected_verdicts = {
         "1": "VERIFIED",
         "2": "BLOCKED",
@@ -188,6 +206,11 @@ def main() -> int:
         "baseline_regressions": {"claim_1": "VERIFIED", "claim_5": "VERIFIED"},
         "source_metric_audit": "PASS_AUDIT_ONLY",
         "release_asset_audit": "PASS",
+        "toy_mechanism_suite": {
+            "scale_label": "TOY",
+            "claims": ["2", "3", "4", "6"],
+            "headline_verdicts_unchanged": True,
+        },
         "claim_verdicts": expected_verdicts,
         "independent_tests": "PASS",
         "durations_seconds": durations,
@@ -200,6 +223,7 @@ def main() -> int:
         "- Claim 1: VERIFIED — exact FEEC/incidence identities and perturbation control pass.\n"
         "- Claim 5: VERIFIED — exact Dirichlet construction and unconstrained control pass.\n"
         "- Claims 2, 3, 4, 6: BLOCKED — required empirical assets are absent from the pinned public release.\n"
+        "- Toy mechanism suite: PASS — four CPU analogues and damaged-structure controls pass; no headline verdict changes.\n"
         "- Source metric audit: PASS (audit only) — pinned arXiv source contract is unchanged.\n"
         "- Release asset audit: PASS — both scanners agree; injected complete-release control clears every blocker.\n"
         "- Independent test suite: PASS.\n\n"
