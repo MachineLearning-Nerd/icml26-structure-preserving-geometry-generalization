@@ -1,0 +1,23 @@
+{
+  "claim_id": 2,
+  "paper_statement": "On the standard Pipe Flow benchmark, Geo-NeW obtains mean per-sample normalized L2 error 0.112e-2, a 71% reduction from LaMO at 0.38e-2.",
+  "source_anchor": "main.tex, Section 4.4 and Table 2; Appendix Table 5 and Table 6",
+  "assumptions": [
+    "The standard 1000-train/200-test Pipe split and 16641-node meshes are used.",
+    "Geo-NeW uses P=32 and the paper's 5000-epoch training configuration.",
+    "The reported mean per-sample normalized L2 metric is computed on the held-out test set.",
+    "The released implementation and preprocessing reproduce the paper model rather than a proxy architecture."
+  ],
+  "acceptance": {
+    "verified": "Independent evaluation of a released checkpoint, or CPU retraining with the complete released pipeline and uncertainty across deterministic seeds, reproduces both the absolute error and reduction within a predeclared tolerance.",
+    "falsified": "A faithful evaluation or adequately powered faithful retraining satisfying every assumption contradicts the reported result."
+  },
+  "required_inputs": [
+    "standard Pipe raw data",
+    "Geo-NeW Pipe preprocessing pipeline",
+    "exact Pipe training configuration including optimizer details",
+    "released Pipe checkpoint or feasible faithful retraining"
+  ],
+  "rejection_rule": "Source-table transcription, a toy mesh, a different model, a partial split, or an untrained forward pass cannot yield VERIFIED or FALSIFIED.",
+  "status": "BLOCKED"
+}

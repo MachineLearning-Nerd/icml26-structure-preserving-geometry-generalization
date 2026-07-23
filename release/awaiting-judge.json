@@ -1,0 +1,17 @@
+{
+  "current_judged_score": "4/12",
+  "formal_verdicts": {
+    "claim_1": "VERIFIED",
+    "claim_2": "BLOCKED",
+    "claim_3": "BLOCKED",
+    "claim_4": "BLOCKED",
+    "claim_5": "VERIFIED",
+    "claim_6": "BLOCKED"
+  },
+  "previous_judged_revision": "8753eb9a662a446337f02a7773eddece8f64a3af",
+  "published_revision": "cd77f568e5ef0d62f3dd2bc3366dade64bbf4406",
+  "published_space_id": "DineshAI/RtnSbA5AUV",
+  "score_increase_claimed": false,
+  "status": "AWAITING_LIVE_JUDGE",
+  "validated_experiment_sha": "45b2a55bdee067a4d9f71fb7ab76548fcf370987"
+}

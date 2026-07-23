@@ -1,0 +1,62 @@
+{
+  "bootstrap_replicates": 2000,
+  "formal_claim_verdicts_unchanged": {
+    "2": "BLOCKED",
+    "3": "BLOCKED",
+    "4": "BLOCKED",
+    "6": "BLOCKED"
+  },
+  "negative_controls_pass": {
+    "2": true,
+    "3": true,
+    "4": true,
+    "6": true
+  },
+  "results": {
+    "2": {
+      "cases": 15,
+      "damaged_control_mean_normalized_l2": 0.4913883408886861,
+      "direct_mean_normalized_l2": 0.08192245351793347,
+      "structured_mean_normalized_l2": 0.0
+    },
+    "3": {
+      "cases": 19,
+      "damaged_control_mean_normalized_l2": 0.4736842105263157,
+      "direct_mean_normalized_l2": 0.06278640746862962,
+      "structured_mean_normalized_l2": 0.0
+    },
+    "4": {
+      "cases": 18,
+      "damaged_control_mean_normalized_l2": 0.4285714285714278,
+      "direct_mean_normalized_l2": 0.35789057129110646,
+      "structured_mean_normalized_l2": 6.840998343106638e-16
+    },
+    "6": {
+      "cases": 4,
+      "direct_mean_normalized_l2": 0.0839395707453789,
+      "last_meaningful_angle_degrees": {
+        "direct": 25,
+        "structured": 30
+      },
+      "per_angle_direct_errors": {
+        "15": 0.03242184537548767,
+        "20": 0.058799807879943,
+        "25": 0.09806651874616334,
+        "30": 0.14647011097992158
+      },
+      "structured_mean_normalized_l2": 1.1579367563650037e-15,
+      "toy_only_meaningful_threshold_normalized_l2": 0.1,
+      "wrong_geometry_control_mean_normalized_l2": 0.20113423032038974
+    }
+  },
+  "run": {
+    "backend": "local",
+    "git_sha": "91274c1fd70b2b0613694f2d682d48ddc5c831cb",
+    "id": "8d7baefe-d9e1-4eaa-8126-d11aecd56751",
+    "runtime_seconds": 22.045276,
+    "tests_passed": 17
+  },
+  "scale_label": "TOY",
+  "scope": "mechanism analogues; not the paper benchmarks or models",
+  "seed": 20260202788
+}

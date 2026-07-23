@@ -1,0 +1,6 @@
+{
+  "boundary_nodes": 4000,
+  "constrained_within_roundoff": true,
+  "interior_nontrivial": true,
+  "unconstrained_violation_detected": true
+}

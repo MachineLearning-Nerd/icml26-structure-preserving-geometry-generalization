@@ -1,0 +1,19 @@
+{
+  "claim_id": 5,
+  "paper_statement": "Geo-NeW enforces Dirichlet boundary conditions exactly, producing zero error at boundary nodes independent of learned weights.",
+  "source_anchor": "main.tex, Section 4.4 Table 3; Appendix boundary-basis construction",
+  "assumptions": [
+    "Boundary degrees of freedom use the paper's constrained parameterization.",
+    "The distance/mask factor is exactly zero on Dirichlet nodes."
+  ],
+  "acceptance": {
+    "verdict": "VERIFIED",
+    "checks": [
+      "constrained boundary max absolute error is at numerical roundoff",
+      "the result holds for seeded worst-case random network weights",
+      "an unconstrained network produces a detected nonzero violation"
+    ]
+  },
+  "rejection_rule": "Any constrained boundary error above tolerance or a negative control that does not violate the boundary exits nonzero.",
+  "status": "VERIFIED"
+}

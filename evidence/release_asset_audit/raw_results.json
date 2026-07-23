@@ -1,0 +1,59 @@
+{
+  "audit_scope": {
+    "github_tree_url": "https://api.github.com/repos/PIMILab/Geo-NeW/git/trees/9c30e9320428c10c9a4721c19a9bc0a1639b6716?recursive=1",
+    "hugging_face_urls": {
+      "datasets": "https://huggingface.co/api/datasets?author=PIMILab&limit=100",
+      "models": "https://huggingface.co/api/models?author=PIMILab&limit=100"
+    },
+    "official_git_sha": "9c30e9320428c10c9a4721c19a9bc0a1639b6716",
+    "official_repository": "PIMILab/Geo-NeW",
+    "user_agent": "OpenResearch-Reproduction/1.0 (paper 2602.02788; asset audit)"
+  },
+  "claim_verdicts": {
+    "1": "VERIFIED",
+    "2": "BLOCKED",
+    "3": "BLOCKED",
+    "4": "BLOCKED",
+    "5": "VERIFIED",
+    "6": "BLOCKED"
+  },
+  "hugging_face_author_inventory_ids": {
+    "datasets": [],
+    "models": []
+  },
+  "independent_checker_output": {
+    "benchmark_entrypoints": [],
+    "complete_for_empirical_claims": false,
+    "dataset_files": [],
+    "weight_files": []
+  },
+  "missing_requirements_by_claim": {
+    "2": ["checkpoint", "preprocessing", "pipe_training"],
+    "3": ["checkpoint", "preprocessing", "elasticity_training"],
+    "4": ["checkpoint", "preprocessing", "poly_ood_data", "ns2d_custom_data"],
+    "6": ["checkpoint", "ns2d_custom_data"]
+  },
+  "negative_control_output": {
+    "all_blockers_cleared": true,
+    "remaining_blockers": {
+      "2": [],
+      "3": [],
+      "4": [],
+      "6": []
+    }
+  },
+  "official_tree_paths": [
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "demo.py",
+    "images",
+    "images/geo_new_logo.png",
+    "src",
+    "src/geo_new.py",
+    "src/models.py",
+    "src/nonlinear_solver.py",
+    "src/utils.py"
+  ],
+  "interpretation": "The pinned official release is a minimal demo and does not contain the assets needed to decide Claims 2, 3, 4, or 6 faithfully."
+}

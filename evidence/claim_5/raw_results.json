@@ -1,0 +1,13 @@
+{
+  "boundary_max_abs_error_structure_preserving": 1.7763568394002505e-15,
+  "boundary_max_abs_error_unconstrained": 9.3071,
+  "boundary_nodes": 4000,
+  "claim": "GeoNeW_exact_dirichlet_bc",
+  "d_zero_on_boundary_max": 2.220446049250313e-16,
+  "exact_dirichlet_bc": true,
+  "interior_solution_nontrivial": true,
+  "paper": "arXiv:2602.02788v2",
+  "seed": 0,
+  "unconstrained_violates_bc": true,
+  "verdict": "VERIFIED"
+}

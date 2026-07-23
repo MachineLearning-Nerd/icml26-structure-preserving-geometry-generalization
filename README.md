@@ -1,5 +1,11 @@
 # Claim-by-claim Geo-NeW reproduction (local CPU)
 
+> **Publication status:** Evidence is published to the existing
+> [Hugging Face logbook](https://huggingface.co/spaces/DineshAI/RtnSbA5AUV/tree/cd77f568e5ef0d62f3dd2bc3366dade64bbf4406)
+> at revision `cd77f568e5ef0d62f3dd2bc3366dade64bbf4406` and is **awaiting live
+> judge evaluation**. The current judged score remains 4/12; no increase is
+> claimed before a new verdict.
+
 This project tests six judged claims from *Structure-Preserving Learning
 Improves Geometry Generalization in Neural PDEs* (arXiv
 [2602.02788](https://arxiv.org/abs/2602.02788), OpenReview `RtnSbA5AUV`).

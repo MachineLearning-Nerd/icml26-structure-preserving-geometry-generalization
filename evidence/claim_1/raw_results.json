@@ -1,0 +1,19 @@
+{
+  "delta0_ones": {
+    "max_residual": 0.0,
+    "ok": true
+  },
+  "feec_d2_zero": {
+    "ok": true
+  },
+  "global_conservation": {
+    "max_residual": 0.0,
+    "ok": true
+  },
+  "incidence_crosscheck": {
+    "ok": true
+  },
+  "neg_control": {
+    "ok": true
+  }
+}

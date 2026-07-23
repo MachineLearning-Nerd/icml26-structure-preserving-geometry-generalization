@@ -1,0 +1,4 @@
+{
+  "check": "manual complete-graph incidence edge set equals construct_delta0",
+  "ok": true
+}

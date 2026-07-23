@@ -1,0 +1,21 @@
+{
+  "claim_id": 1,
+  "paper_statement": "Geo-NeW exactly preserves discrete conservation structure through Whitney forms and FEEC.",
+  "source_anchor": "main.tex, Sections 2.2 and 3; Appendix A.1",
+  "assumptions": [
+    "The discrete operators use the oriented incidence construction implemented by Geo-NeW.",
+    "The Whitney partition of unity and exact-sequence construction are not replaced by a learned unconstrained operator."
+  ],
+  "acceptance": {
+    "verdict": "VERIFIED",
+    "checks": [
+      "delta_0 @ 1 is integer-exact zero for P in [3,4,5,8,12]",
+      "1^T delta_0^T F is zero for 150 seeded random fluxes",
+      "delta_1 @ delta_0 is integer-exact zero",
+      "the independent incidence implementation agrees with the implementation under test",
+      "a one-entry perturbation is detected"
+    ]
+  },
+  "rejection_rule": "Any failed identity, independent cross-check, or negative control exits nonzero.",
+  "status": "VERIFIED"
+}

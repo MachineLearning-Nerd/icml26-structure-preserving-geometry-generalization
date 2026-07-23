@@ -1,0 +1,22 @@
+{
+  "claim_id": 4,
+  "paper_statement": "On Poly-Poisson OOD, Geo-NeW reports 2.14e-2 versus Linear Attention at 4.60e-2 (53% reduction), and on NS2d-c++ OOD it reports 42.2e-2 versus Transolver at 91.40e-2 (54% reduction).",
+  "source_anchor": "main.tex, Section 4.4 and Table 1; figures/big_table.tex",
+  "assumptions": [
+    "Poly-Poisson trains on polygons with fewer than five sides and evaluates on more than five sides.",
+    "NS2d-c++ uses the paper's custom COMSOL/Gmsh geometry distributions and OOD split.",
+    "The Section 4.4 mean per-sample normalized L2 metric is used.",
+    "Both conjuncts are evaluated with faithful released models or training pipelines."
+  ],
+  "acceptance": {
+    "verified": "Both OOD conjuncts reproduce their absolute errors and named-baseline reductions under the exact custom splits.",
+    "falsified": "A faithful, adequately powered evaluation satisfying the paper assumptions contradicts one or both conjuncts."
+  },
+  "required_inputs": [
+    "Poly-Poisson ID/OOD processed data or complete generator/preprocessor",
+    "NS2d-c++ COMSOL/Gmsh ID/OOD data or complete generator/preprocessor",
+    "Geo-NeW and named-baseline checkpoints or complete training pipelines"
+  ],
+  "rejection_rule": "Reading Table 1, recomputing percentages, or using synthetic polygons/steps without the paper distributions is audit evidence only.",
+  "status": "BLOCKED"
+}
