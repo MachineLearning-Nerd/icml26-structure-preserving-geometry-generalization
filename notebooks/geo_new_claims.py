@@ -112,8 +112,45 @@ def _(mo):
     uv sync --frozen && uv run python repro/src/run_all.py
     ```
 
-    Evidence run: `bc430eb2-ddfb-4bee-9711-de47f41cf4e5`, 12.279662
-    seconds on local CPU, $0.
+    The exact benchmark verdicts above remain unchanged.
+    """)
+    return
+
+
+@app.cell
+def _():
+    toy_results = [
+        {"claim": "C2 Pipe analogue", "structured": 0.0, "direct": 0.081922, "control": 0.491388, "cases": 15},
+        {"claim": "C3 Elasticity analogue", "structured": 0.0, "direct": 0.062786, "control": 0.473684, "cases": 19},
+        {"claim": "C4 polygon Poisson", "structured": 6.84e-16, "direct": 0.357891, "control": 0.428571, "cases": 18},
+        {"claim": "C6 angled step", "structured": 1.16e-15, "direct": 0.083940, "control": 0.201134, "cases": 4},
+    ]
+    return (toy_results,)
+
+
+@app.cell
+def _(mo, toy_results):
+    mo.md(r"""
+    ## Separate toy mechanism evidence
+
+    These embedded results use substituted PDEs, synthetic data, simplified
+    operators, and non-paper baselines. They test a mechanism, not the paper's
+    benchmark numbers. Every formal verdict for C2/C3/C4/C6 remains `BLOCKED`.
+    """)
+    mo.ui.table(toy_results, selection=None)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    ## How the unresolved claims can be falsified
+
+    Claims 2–4 now have executable rounded-interval rules and reject injected
+    observations where the target is 20% worse than its comparator. Claim 6
+    cannot be machine-falsified as written: the word “meaningful” has no
+    numeric threshold. A future exact run must preregister that threshold,
+    angle grid, metric, and uncertainty rule.
     """)
     return
 

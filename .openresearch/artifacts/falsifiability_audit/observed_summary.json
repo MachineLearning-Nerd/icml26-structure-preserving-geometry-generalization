@@ -1,0 +1,40 @@
+{
+  "formal_claim_verdicts_unchanged": {
+    "2": "BLOCKED",
+    "3": "BLOCKED",
+    "4": "BLOCKED",
+    "6": "BLOCKED"
+  },
+  "numeric_results": {
+    "elasticity": {
+      "center_reduction_percent": 29.8,
+      "center_rounds_half_up_to_percent": 30,
+      "injected_counterexample_rejected": true,
+      "reported_29_percent_is_display_interval_compatible": true
+    },
+    "ns2d_cpp_ood": {
+      "center_reduction_percent": 53.82932166301969,
+      "injected_counterexample_rejected": true
+    },
+    "pipe": {
+      "center_reduction_percent": 70.52631578947368,
+      "injected_counterexample_rejected": true
+    },
+    "poly_poisson_ood": {
+      "center_reduction_percent": 53.47826086956522,
+      "injected_counterexample_rejected": true
+    }
+  },
+  "qualitative_claim_6": {
+    "machine_falsifiable_as_written": false,
+    "reason": "The paper gives no numerical predicate for meaningful."
+  },
+  "run": {
+    "backend": "local",
+    "git_sha": "0912337502b8c046afc08d68ffcf52448e84f289",
+    "id": "7a611ba3-44e6-4b80-9ecc-4c8b27647844",
+    "runtime_seconds": 11.184749,
+    "tests_passed": 18
+  },
+  "scope": "decision-rule audit only; no model or benchmark evaluation"
+}

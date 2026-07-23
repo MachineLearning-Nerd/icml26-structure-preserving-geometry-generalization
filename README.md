@@ -8,16 +8,17 @@ Dirichlet enforcement both survive independent checkers and negative
 controls. The four trained benchmark claims remain **BLOCKED**, because the
 pinned official release does not include the required checkpoints, faithful
 preprocessors, benchmark entrypoints, or custom OOD data. No toy result is
-presented as full-scale evidence.
+presented as full-scale evidence. Each unresolved claim now also has an
+executable falsification route and an explicitly `TOY` CPU mechanism test.
 
 | Claim | Paper number / statement | Observed | Assessment |
 |---|---|---|---|
 | C1 conservation | exact | all exact residuals `0`; `1e-9` perturbation detected | **VERIFIED** |
-| C2 Pipe | `0.112e-2` vs `0.38e-2` | model output not measurable from release | **BLOCKED** |
-| C3 Elasticity | `0.351e-2` vs `0.50e-2` | model output not measurable from release | **BLOCKED** |
-| C4 OOD pair | `2.14` vs `4.60`; `42.2` vs `91.40` | source values audited; model output unavailable | **BLOCKED** |
+| C2 Pipe | `0.112e-2` vs `0.38e-2` | exact model unavailable; toy structured/direct `0` / `0.08192` | **BLOCKED** + TOY |
+| C3 Elasticity | `0.351e-2` vs `0.50e-2` | exact model unavailable; toy `0` / `0.06279` | **BLOCKED** + TOY |
+| C4 OOD pair | `2.14` vs `4.60`; `42.2` vs `91.40` | source audited; toy polygon OOD `6.84e-16` / `0.35789` | **BLOCKED** + TOY |
 | C5 boundary | `0.00` | `1.78e-15` vs `9.3071` control | **VERIFIED** |
-| C6 angles | Transolver past 20°; Geo-NeW through 30° | custom sweep unavailable | **BLOCKED** |
+| C6 angles | Transolver past 20°; Geo-NeW through 30° | exact sweep unavailable; toy direct through 25°, structured through 30° | **BLOCKED** + TOY |
 
 Compute was the local 8-core arm64 CPU. The successful cumulative run took
 12.279662 seconds and cost $0; Hugging Face `cpu-upgrade` was not needed.
@@ -43,6 +44,9 @@ uvx marimo run notebooks/geo_new_claims.py
 | [`orx/validated-4-12-baseline`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/validated-4-12-baseline) | freeze existing verified claims and uv lock | `uv sync --frozen && uv run python repro/src/run_all.py` | C1/C5 pass; 10 tests | local CPU |
 | [`orx/exact-claim-contracts-and-public-asset-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/exact-claim-contracts-and-public-asset-audit) | exact contracts and public-release audit | `uv sync --frozen && uv run python repro/src/run_all.py` | C1/C5 VERIFIED; C2/C3/C4/C6 BLOCKED; 13 tests | local CPU |
 | [`orx/durable-evidence-and-release-candidate`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/durable-evidence-and-release-candidate) | durable artifacts, report, notebook, additive Space candidate | `uv sync --frozen && uv run python repro/src/run_all.py` | release-gate rerun | local CPU |
+| [`orx/preregistered-falsifiability-and-counterexample`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/preregistered-falsifiability-and-counterexample) | executable numeric contracts and counterexamples | `uv sync --frozen && uv run python repro/src/run_all.py` | C2–C4 counterexamples rejected; C6 underdefined; 18 tests | local CPU |
+| [`orx/cpu-toy-geometry-mechanism-suite`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/cpu-toy-geometry-mechanism-suite) | four explicit toy mechanism analogues | `uv sync --frozen && uv run python repro/src/run_all.py` | all controls pass; formal verdicts unchanged; 17 tests | local CPU |
+| [`orx/integrated-multi-route-evidence-candidate`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/integrated-multi-route-evidence-candidate) | integrate exact, falsifiability, and toy routes | `uv sync --frozen && uv run python repro/src/run_all.py` | cumulative final rerun | local CPU |
 
 Fixed reproduction:
 

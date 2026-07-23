@@ -12,3 +12,11 @@ campaign is CPU-only. A substitute preprocessor, architecture, split, or
 short training run would be a proxy and cannot decide the exact claim.
 
 Machine blocker set: `checkpoint`, `preprocessing`, `pipe_training`.
+
+Exploratory route (`TOY`): a 1D parabolic profile analogue over 15 OOD pipe
+heights obtained mean normalized L2 `0` for a structured scalar-operator solve,
+`0.08192` for an affine field regressor, and `0.49139` for the damaged-geometry
+control. These are not the standard Pipe data, Geo-NeW, or LaMO.
+
+Falsifiability route: the numeric contract rejects an injected target error
+20% worse than the comparator.

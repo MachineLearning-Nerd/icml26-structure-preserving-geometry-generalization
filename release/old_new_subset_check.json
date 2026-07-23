@@ -1,5 +1,5 @@
 {
-  "candidate_union_file_count": 66,
+  "candidate_union_file_count": 73,
   "judged_revision": "8753eb9a662a446337f02a7773eddece8f64a3af",
   "logbook_references_valid": true,
   "missing_logbook_references": [],
@@ -9,5 +9,5 @@
   "protected_page_overwrites": [],
   "secret_scan_passed": true,
   "text_only_allowlist": true,
-  "upload_file_count": 46
+  "upload_file_count": 53
 }

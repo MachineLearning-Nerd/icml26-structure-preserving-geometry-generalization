@@ -25,6 +25,12 @@
         "children": []
       },
       {
+        "slug": "exploratory-routes",
+        "title": "Alternative falsifiability and toy routes",
+        "file": "pages/exploratory-routes/page.md",
+        "children": []
+      },
+      {
         "slug": "claim-conservation",
         "title": "Claim 1 — FEEC exact conservation",
         "file": "pages/claim-conservation/page.md",

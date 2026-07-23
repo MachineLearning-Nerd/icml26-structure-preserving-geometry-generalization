@@ -10,7 +10,8 @@ the two architectural claims: conservation and exact Dirichlet enforcement
 both survive independent checkers and adversarial controls. The four
 benchmark claims cannot be decided from the public release: the required
 trained weights, faithful preprocessors, and custom OOD data are absent.
-They are marked `BLOCKED`, never substituted with toy evidence.
+They are marked `BLOCKED`. New toy experiments are shown separately as
+mechanism evidence and never substituted for benchmark evidence.
 
 ## Results first
 
@@ -24,6 +25,22 @@ They are marked `BLOCKED`, never substituted with toy evidence.
 | C6 angled steps | Transolver degrades past 20°, Geo-NeW stable through 30° | custom angle data/models and numerical “meaningful” threshold unavailable | **BLOCKED** |
 
 No new judge score is claimed. The live judge has not evaluated this revision.
+
+## Three independent routes for every unresolved claim
+
+Each blocked claim was attacked in three different ways:
+
+| Route | C2 Pipe | C3 Elasticity | C4 OOD pair | C6 angles |
+|---|---|---|---|---|
+| Exact public-asset recovery | raw standard data only; no Geo-NeW pipeline/weights | raw standard data only; no Geo-NeW pipeline/weights | custom processed data and weights absent | custom NS2d-c++ sweep and weights absent |
+| Executable falsification | injected contradictory error is rejected | contradictory error rejected; rounding diagnostic retained | both numeric subclaims reject counterexamples | not machine-falsifiable as written |
+| CPU mechanism analogue | `TOY` parabolic-height extrapolation | `TOY` axial-stress law | `TOY` polygon-hole Poisson OOD | `TOY` scalar angled-step sweep |
+
+The exact repository, its full history, forks, releases, Actions artifacts,
+the authors' Hugging Face namespace, the earlier `cnwf` repository, and the
+LaMO comparator release were checked. The earlier code supplies useful
+lineage and LaMO supplies CUDA training scripts, but neither supplies the
+missing Geo-NeW benchmark artifacts or comparator checkpoints.
 
 ## What was implemented
 
@@ -42,6 +59,8 @@ run_all.py
   ├─ verify_bc.py                → constrained BC + unconstrained control
   ├─ run_ood_metric_audit.py     → source-only metric/value audit
   ├─ run_release_asset_audit.py  → pinned public asset inventory
+  ├─ run_falsifiability_audit.py → accept/reject rules + counterexamples
+  ├─ run_toy_mechanism_suite.py  → four explicitly TOY CPU analogues
   └─ pytest                      → independent implementations and controls
 ```
 
@@ -93,6 +112,49 @@ As a non-vacuity check, the audit injects a synthetic complete manifest with
 weights, preprocessing, train entrypoints, and both custom datasets. Every
 blocker then clears. This control tests the blocker logic, not the paper.
 
+## What the CPU toy route did show
+
+![Four toy mechanisms and angled-step sweep](images/toy-multiroute.png)
+
+The structured analogue fits only a small constitutive operator and then
+solves on each held-out geometry. The direct analogue extrapolates a field or
+uses a mean template. Across deterministic held-out cases, mean normalized L2
+was:
+
+| Analogue | Structured | Direct | Damaged control | Cases |
+|---|---:|---:|---:|---:|
+| Pipe-height OOD | `0` | `0.08192` | `0.49139` | 15 |
+| Axial-stress Elasticity | `0` | `0.06279` | `0.47368` | 19 |
+| Polygon-hole Poisson OOD | `6.84e-16` | `0.35789` | `0.42857` | 18 |
+| Angled-step scalar Poisson | `1.16e-15` | `0.08394` | `0.20113` | 4 |
+
+Two thousand deterministic bootstrap resamples provide mean intervals, and
+all damaged-structure controls are detected. Under a preregistered **toy-only**
+threshold of normalized L2 `≤ 0.10`, the direct angle extrapolator remains
+acceptable through 25°, while the structured solve remains acceptable through
+30°. This is directionally consistent with a geometry-structure benefit but
+does **not** reproduce the paper's 20° Transolver breakpoint: the PDE is scalar
+Poisson, the geometry is synthetic, and neither analogue is the paper's model.
+
+The near-zero structured errors are expected because these small experiments
+remain inside the learned scalar-operator family. They should not be compared
+numerically with the paper's trained neural errors.
+
+## Falsifiability findings
+
+Claims 2–4 now have executable rounded-interval contracts. Every injected
+observation making the target 20% worse than its comparator is rejected, and
+the verifier exits nonzero if that changes. Pipe, Poly-Poisson, and NS2d-c++
+center values round to their reported integer improvements. Elasticity's
+displayed centers give `29.8%`, which rounds half-up to `30%`; however, `29%`
+is still achievable within the intervals implied by the displayed precision,
+so this is a diagnostic—not a falsification.
+
+Claim 6 is not machine-falsifiable as written because “meaningful” has no
+numerical predicate. A faithful future test must preregister the angle grid,
+metric, threshold, aggregation, and uncertainty rule rather than silently
+inventing them.
+
 ## Source audit versus empirical evidence
 
 The source audit confirms Table 1 and its mean per-sample normalized-L2
@@ -114,6 +176,9 @@ interpretation: the exact benchmark claims remain `BLOCKED`.
 | Validated baseline | `orx/validated-4-12-baseline` | freeze accepted C1/C5 evidence and uv lock | done, 10 tests |
 | Claim contracts / asset audit | `orx/exact-claim-contracts-and-public-asset-audit` | exact contracts, release inventory, cumulative regressions | done, 13 tests |
 | Durable release candidate | `orx/durable-evidence-and-release-candidate` | package evidence, report, notebook, additive logbook | final gate node |
+| Falsifiability route | `orx/preregistered-falsifiability-and-counterexample` | numeric contracts, injected counterexamples, C6 identifiability | done, 18 tests |
+| CPU toy route | `orx/cpu-toy-geometry-mechanism-suite` | four downscaled mechanism analogues | done, 17 tests |
+| Integrated candidate | `orx/integrated-multi-route-evidence-candidate` | cumulative exact + falsifiability + toy evidence | final rerun node |
 
 Successful evidence run `bc430eb2-ddfb-4bee-9711-de47f41cf4e5` used Git
 `5533c695765767ab00cffd30bce03e19420c0781`, Python 3.12.11, seed 0,
@@ -124,9 +189,11 @@ rerun successfully.
 
 ## Assessment
 
-The reproduction preserves the honest current boundary of the evidence:
+The reproduction has broadened the evidence without crossing its honest
+boundary:
 Claims 1 and 5 are rigorously `VERIFIED`; Claims 2, 3, 4, and 6 are
-rigorously `BLOCKED`. Full-scale resolution needs the authors' exact
+formally `BLOCKED`, with separately labeled `TOY` mechanism results and
+working falsification rules. Full-scale resolution needs the authors' exact
 preprocessors, custom datasets, configurations, and checkpoints—or enough
 released detail to reproduce those assets—followed by multi-seed evaluation
 under the paper's splits and metric. No perfect score is promised, and no

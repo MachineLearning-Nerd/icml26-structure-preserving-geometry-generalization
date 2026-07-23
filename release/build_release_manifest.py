@@ -43,6 +43,30 @@ def mappings() -> list[tuple[Path, str]]:
                 artifacts / "release_asset_audit" / "raw_results.json",
                 "evidence/release_asset_audit/raw_results.json",
             ),
+            (
+                artifacts / "falsifiability_audit" / "method.md",
+                "evidence/falsifiability_audit/method.md",
+            ),
+            (
+                artifacts / "falsifiability_audit" / "EVAL.md",
+                "evidence/falsifiability_audit/EVAL.md",
+            ),
+            (
+                artifacts / "falsifiability_audit" / "observed_summary.json",
+                "evidence/falsifiability_audit/observed_summary.json",
+            ),
+            (
+                artifacts / "toy_mechanism_suite" / "method.md",
+                "evidence/toy_mechanism_suite/method.md",
+            ),
+            (
+                artifacts / "toy_mechanism_suite" / "EVAL.md",
+                "evidence/toy_mechanism_suite/EVAL.md",
+            ),
+            (
+                artifacts / "toy_mechanism_suite" / "observed_summary.json",
+                "evidence/toy_mechanism_suite/observed_summary.json",
+            ),
         ]
     )
     for claim in range(1, 7):

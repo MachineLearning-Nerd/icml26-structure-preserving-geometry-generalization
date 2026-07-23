@@ -14,3 +14,12 @@ and checkpoints are all absent.
 
 Machine blocker set: `checkpoint`, `preprocessing`, `poly_ood_data`,
 `ns2d_custom_data`.
+
+Exploratory route (`TOY`): a finite-difference polygon-hole Poisson analogue
+trained its scalar operator on 3/4-sided holes and evaluated 18 cases with
+6/7/8 sides. Mean normalized L2 was `6.84e-16` structured, `0.35789` for a
+mean-field template, and `0.42857` for a damaged operator. This is neither the
+paper's processed Poly-Poisson data nor its neural baselines.
+
+Both reported numeric comparisons have executable contracts that reject
+injected contradictory observations.
