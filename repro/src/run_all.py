@@ -158,6 +158,21 @@ def main() -> int:
         raise RuntimeError("toy mechanism suite lost its mandatory scope label")
     if not toy_suite["independent_checker"]["passed"]:
         raise RuntimeError("toy mechanism suite independent checker failed")
+    falsifiability_output = (
+        ARTIFACTS / "falsifiability_audit" / "raw_results.json"
+    )
+    durations["falsifiability_audit"] = run_stage(
+        "falsifiability_audit",
+        [
+            sys.executable,
+            "repro/src/run_falsifiability_audit.py",
+            "--output",
+            str(falsifiability_output),
+        ],
+    )
+    falsifiability_audit = json.loads(falsifiability_output.read_text())
+    if not falsifiability_audit["independent_checker"]["passed"]:
+        raise RuntimeError("falsifiability audit independent checker failed")
     expected_verdicts = {
         "1": "VERIFIED",
         "2": "BLOCKED",
@@ -211,6 +226,11 @@ def main() -> int:
             "claims": ["2", "3", "4", "6"],
             "headline_verdicts_unchanged": True,
         },
+        "falsifiability_audit": {
+            "claims_2_3_4": "EXECUTABLE_COUNTEREXAMPLES_PASS",
+            "claim_6": "NOT_MACHINE_FALSIFIABLE_AS_WRITTEN",
+            "headline_verdicts_unchanged": True,
+        },
         "claim_verdicts": expected_verdicts,
         "independent_tests": "PASS",
         "durations_seconds": durations,
@@ -224,6 +244,7 @@ def main() -> int:
         "- Claim 5: VERIFIED — exact Dirichlet construction and unconstrained control pass.\n"
         "- Claims 2, 3, 4, 6: BLOCKED — required empirical assets are absent from the pinned public release.\n"
         "- Toy mechanism suite: PASS — four CPU analogues and damaged-structure controls pass; no headline verdict changes.\n"
+        "- Falsifiability audit: Claims 2–4 reject injected counterexamples; Claim 6 lacks a paper-defined numeric predicate.\n"
         "- Source metric audit: PASS (audit only) — pinned arXiv source contract is unchanged.\n"
         "- Release asset audit: PASS — both scanners agree; injected complete-release control clears every blocker.\n"
         "- Independent test suite: PASS.\n\n"
