@@ -1,3 +1,66 @@
+# Claim-by-claim Geo-NeW reproduction (local CPU)
+
+This project tests six judged claims from *Structure-Preserving Learning
+Improves Geometry Generalization in Neural PDEs* (arXiv
+[2602.02788](https://arxiv.org/abs/2602.02788), OpenReview `RtnSbA5AUV`).
+The strongest result is architectural: exact FEEC conservation and exact
+Dirichlet enforcement both survive independent checkers and negative
+controls. The four trained benchmark claims remain **BLOCKED**, because the
+pinned official release does not include the required checkpoints, faithful
+preprocessors, benchmark entrypoints, or custom OOD data. No toy result is
+presented as full-scale evidence.
+
+| Claim | Paper number / statement | Observed | Assessment |
+|---|---|---|---|
+| C1 conservation | exact | all exact residuals `0`; `1e-9` perturbation detected | **VERIFIED** |
+| C2 Pipe | `0.112e-2` vs `0.38e-2` | model output not measurable from release | **BLOCKED** |
+| C3 Elasticity | `0.351e-2` vs `0.50e-2` | model output not measurable from release | **BLOCKED** |
+| C4 OOD pair | `2.14` vs `4.60`; `42.2` vs `91.40` | source values audited; model output unavailable | **BLOCKED** |
+| C5 boundary | `0.00` | `1.78e-15` vs `9.3071` control | **VERIFIED** |
+| C6 angles | Transolver past 20°; Geo-NeW through 30° | custom sweep unavailable | **BLOCKED** |
+
+Compute was the local 8-core arm64 CPU. The successful cumulative run took
+12.279662 seconds and cost $0; Hugging Face `cpu-upgrade` was not needed.
+The paper's H200 training was not downscaled into a proxy.
+
+Read the [illustrated technical report](reports/geo-new-claim-by-claim-2026-07-23/report.md)
+or the [self-contained marimo notebook](notebooks/geo_new_claims.py).
+
+[![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/blob/master/notebooks/geo_new_claims.py)
+
+Local notebook commands:
+
+```bash
+uvx marimo edit notebooks/geo_new_claims.py
+uvx marimo run notebooks/geo_new_claims.py
+```
+
+## Experiment log
+
+| Branch / experiment | Purpose | Exact run command | Assessment / outcome | Compute |
+|---|---|---|---|---|
+| `master` | publication surface | Not run as an experiment (publication surface) | landing page only | — |
+| [`orx/validated-4-12-baseline`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/validated-4-12-baseline) | freeze existing verified claims and uv lock | `uv sync --frozen && uv run python repro/src/run_all.py` | C1/C5 pass; 10 tests | local CPU |
+| [`orx/exact-claim-contracts-and-public-asset-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/exact-claim-contracts-and-public-asset-audit) | exact contracts and public-release audit | `uv sync --frozen && uv run python repro/src/run_all.py` | C1/C5 VERIFIED; C2/C3/C4/C6 BLOCKED; 13 tests | local CPU |
+| [`orx/durable-evidence-and-release-candidate`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/durable-evidence-and-release-candidate) | durable artifacts, report, notebook, additive Space candidate | `uv sync --frozen && uv run python repro/src/run_all.py` | release-gate rerun | local CPU |
+
+Fixed reproduction:
+
+```bash
+uv sync --frozen && uv run python repro/src/run_all.py
+```
+
+The environment is locked by `uv.lock`. Claim contracts, raw evidence,
+independent checker output, controls, and limitations are under
+`.openresearch/artifacts/`.
+
+## Historical upstream README
+
+> The material below is retained for provenance. Its earlier
+> “FALSIFIED AS WRITTEN” label applied to a separate 65%-MSE wording audit,
+> not to the six empirical claims evaluated above. The current empirical
+> verdict for the OOD benchmark claim is `BLOCKED`.
+
 # Repro — Geo-NeW: FEEC Conservation and OOD Metric Audit (RtnSbA5AUV)
 
 Clean-room reproduction of *Structure-Preserving Learning Improves Geometry Generalization in

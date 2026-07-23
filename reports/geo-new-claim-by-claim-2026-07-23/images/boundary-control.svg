@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <rect width="1200" height="620" fill="#f7f7f4"/>
+  <text x="60" y="80" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#14213d">The boundary construction survives worst-case weights</text>
+  <text x="60" y="122" font-family="Arial,sans-serif" font-size="21" fill="#4b5563">Maximum absolute boundary error across 4,000 nodes; logarithmic scale.</text>
+  <line x1="180" y1="480" x2="1080" y2="480" stroke="#9ca3af" stroke-width="2"/>
+  <rect x="300" y="430" width="220" height="50" rx="8" fill="#1b998b"/>
+  <rect x="700" y="180" width="220" height="300" rx="8" fill="#d1495b"/>
+  <g font-family="Arial,sans-serif" text-anchor="middle" fill="#14213d">
+    <text x="410" y="410" font-size="23" font-weight="700">1.78×10⁻¹⁵</text>
+    <text x="410" y="530" font-size="21">constrained Geo-NeW</text>
+    <text x="810" y="160" font-size="23" font-weight="700">9.3071</text>
+    <text x="810" y="530" font-size="21">unconstrained control</text>
+  </g>
+  <text x="60" y="580" font-family="Arial,sans-serif" font-size="18" fill="#4b5563">Seed 0 · exact mask residual 2.22×10⁻¹⁶ · interior solution nontrivial</text>
+</svg>

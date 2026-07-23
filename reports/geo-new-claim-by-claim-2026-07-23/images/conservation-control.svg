@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <rect width="1200" height="620" fill="#f7f7f4"/>
+  <text x="60" y="80" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#14213d">Conservation is structural, not accidental</text>
+  <text x="60" y="122" font-family="Arial,sans-serif" font-size="21" fill="#4b5563">All exact-sequence residuals are zero; a 10⁻⁹ incidence perturbation is detected.</text>
+  <line x1="120" y1="500" x2="1100" y2="500" stroke="#9ca3af" stroke-width="2"/>
+  <g font-family="Arial,sans-serif" font-size="20" text-anchor="middle">
+    <rect x="170" y="470" width="150" height="30" fill="#1b998b"/><text x="245" y="535" fill="#14213d">δ₀1</text><text x="245" y="455" fill="#14213d">0</text>
+    <rect x="390" y="470" width="150" height="30" fill="#1b998b"/><text x="465" y="535" fill="#14213d">global flux</text><text x="465" y="455" fill="#14213d">0</text>
+    <rect x="610" y="470" width="150" height="30" fill="#1b998b"/><text x="685" y="535" fill="#14213d">δ₁δ₀</text><text x="685" y="455" fill="#14213d">0</text>
+    <rect x="830" y="230" width="150" height="270" fill="#d1495b"/><text x="905" y="535" fill="#14213d">perturbed δ₀</text><text x="905" y="210" fill="#14213d">1.0×10⁻⁹</text>
+  </g>
+  <text x="60" y="590" font-family="Arial,sans-serif" font-size="18" fill="#4b5563">Zero identities are shown as baseline markers; the detected control is enlarged for visibility.</text>
+</svg>
