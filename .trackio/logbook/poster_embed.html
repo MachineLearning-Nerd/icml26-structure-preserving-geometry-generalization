@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- poster_embed.html -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Geo-NeW — two-claim reproduction audit</title>
+  <style>
+    :root { color-scheme: light; --ink:#102a43; --blue:#167d9a; --green:#26734d; --rust:#a9472b; --paper:#eef6f7; --card:#fff; --line:#b8ced3; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:system-ui,-apple-system,sans-serif; }
+    main { max-width:1400px; min-height:720px; margin:auto; padding:36px; display:grid; gap:22px; }
+    header { border-bottom:4px solid var(--blue); padding-bottom:18px; }
+    h1 { margin:0 0 8px; font-size:44px; line-height:1.05; }
+    .subtitle { font-size:20px; margin:0; }
+    .scoreboard { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .metric,.claim,.proof { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
+    .metric b { display:block; color:var(--blue); font-size:29px; }
+    .claims { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    h2 { margin:0 0 10px; font-size:25px; }
+    .verified { border-top:7px solid var(--green); }
+    .falsified { border-top:7px solid var(--rust); }
+    code { background:#e7f0f2; padding:2px 5px; border-radius:4px; }
+    .equation { font-family:ui-monospace,SFMono-Regular,monospace; font-size:18px; line-height:1.55; }
+    footer { display:flex; justify-content:space-between; gap:20px; border-top:1px solid var(--line); padding-top:12px; font-size:14px; }
+    @media (max-width:850px) { .scoreboard,.claims { grid-template-columns:1fr 1fr; } h1{font-size:32px;} }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Geo-NeW: Structure and Geometry Generalization</h1>
+    <p class="subtitle">Exact FEEC reproduction plus a SHA-pinned audit of the challenged OOD statistic</p>
+  </header>
+  <section class="scoreboard">
+    <div class="metric"><b>10 / 10</b>tests pass</div>
+    <div class="metric"><b>0.0</b>max conservation residual</div>
+    <div class="metric"><b>53.48%</b>Poly OOD L2 reduction</div>
+    <div class="metric"><b>49.21%</b>NS2d++ OOD L2 reduction</div>
+  </section>
+  <section class="claims">
+    <article class="claim verified">
+      <h2>Claim 1 — VERIFIED</h2>
+      <p>Incidence and FEEC identities establish conservation for every partition-of-unity, without training assumptions.</p>
+      <p class="equation">δ₀·1 = 0<br>1ᵀδ₀ᵀF = 0<br>δ₁δ₀ = 0</p>
+      <p>An independent incidence and a one-entry perturbation provide positive and negative controls.</p>
+    </article>
+    <article class="claim falsified">
+      <h2>Claim 2 — FALSIFIED AS WRITTEN</h2>
+      <p>The challenged “65% MSE” statistic is absent. The paper defines mean per-sample normalized L2 and reports different reductions against the best alternatives.</p>
+      <p class="equation">Poly: 1 − 2.14/4.60 = 53.478261%<br>NS2d++: 1 − 42.2/83.08 = 49.205585%</p>
+    </article>
+  </section>
+  <section class="proof">
+    <h2>Pinned primary-source contract</h2>
+    <p>arXiv <code>2602.02788v2</code> source SHA-256<br><code>c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724</code></p>
+    <p>The verifier checks the archive hash, metric formula, exact table rows, and mild-regime values before doing 40-digit decimal arithmetic. The source contains zero MSE and zero standalone 65 mentions.</p>
+  </section>
+  <footer>
+    <span>ICML 2026 OpenReview <strong>RtnSbA5AUV</strong></span>
+    <span>CPU-only · public portable bundle · primary-source pinned</span>
+  </footer>
+</main>
+</body>
+</html>

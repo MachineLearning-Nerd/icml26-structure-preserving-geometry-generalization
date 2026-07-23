@@ -2,10 +2,22 @@
   "space_id": "DineshAI/RtnSbA5AUV",
   "emoji": "🌊",
   "created_at": "2026-07-17T22:05:00+00:00",
-  "paper": {"arxiv_id": "2602.02788", "openreview_id": "RtnSbA5AUV", "title": "Structure-Preserving Learning Improves Geometry Generalization in Neural PDEs (Geo-NeW)"},
-  "tags": ["icml2026-repro", "paper-RtnSbA5AUV"],
+  "paper": {
+    "arxiv_id": "2602.02788",
+    "openreview_id": "RtnSbA5AUV",
+    "title": "Structure-Preserving Learning Improves Geometry Generalization in Neural PDEs (Geo-NeW)"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-RtnSbA5AUV"
+  ],
   "autosync": true,
   "private": false,
-  "title": "Repro - Geo-NeW FEEC Conservation (RtnSbA5AUV)",
-  "artifacts_bucket": "DineshAI/RtnSbA5AUV-artifacts"
+  "title": "Repro - Geo-NeW Conservation and OOD Metric Audit (RtnSbA5AUV)",
+  "artifacts_bucket": "DineshAI/RtnSbA5AUV-artifacts",
+  "last_page": "conclusion",
+  "local_artifacts": [
+    "reproduction-geo-new-conservation/repro-bundle:v1"
+  ],
+  "local_dashboards": {}
 }
