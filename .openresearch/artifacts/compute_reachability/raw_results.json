@@ -1,0 +1,138 @@
+{
+  "description": "Measured CPU cost of the official Geo-NeW release per benchmark, extrapolated to the paper's own epoch budget.",
+  "environment": {
+    "cpu": "Apple M2",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.11.13",
+    "torch": "2.13.0",
+    "torch_threads": 4,
+    "numpy": "2.4.6",
+    "skfem": "12.0.2",
+    "repo_git_sha": "4d3bf088811abf0a5f24f64e216afe2a128463e8",
+    "upstream_geo_new_sha": "9c30e9320428c10c9a4721c19a9bc0a1639b6716"
+  },
+  "seed": 0,
+  "results": [
+    {
+      "N_nodes": 1089,
+      "n_pou": 8,
+      "batch": 16,
+      "params": 1442903,
+      "step_times_s": [
+        0.469,
+        0.1914,
+        0.1684
+      ],
+      "median_warm_step_s": 0.1799,
+      "newton_iters_mean": [
+        14.0,
+        3.0,
+        3.0
+      ],
+      "converged_frac": [
+        0.8125,
+        1.0,
+        1.0
+      ],
+      "benchmark": "poly_poisson",
+      "N_paper": 952,
+      "paper_train_samples": 4498,
+      "paper_epochs": 2000,
+      "steps_per_epoch": 282,
+      "paper_total_train_steps": 564000,
+      "projected_wall_clock_s": 101463.6,
+      "projected_wall_clock_h": 28.2
+    },
+    {
+      "N_nodes": 4225,
+      "n_pou": 16,
+      "batch": 8,
+      "params": 4854071,
+      "step_times_s": [
+        0.4341,
+        0.3479,
+        0.3599
+      ],
+      "median_warm_step_s": 0.3539,
+      "newton_iters_mean": [
+        3.0,
+        4.0,
+        3.0
+      ],
+      "converged_frac": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "benchmark": "ns2d_cpp",
+      "N_paper": 3565,
+      "paper_train_samples": 3490,
+      "paper_epochs": 1000,
+      "steps_per_epoch": 437,
+      "paper_total_train_steps": 437000,
+      "projected_wall_clock_s": 154654.3,
+      "projected_wall_clock_h": 43.0
+    },
+    {
+      "N_nodes": 1089,
+      "n_pou": 32,
+      "batch": 16,
+      "params": 47082167,
+      "step_times_s": [
+        1.2685,
+        0.8634,
+        0.8681
+      ],
+      "median_warm_step_s": 0.8657,
+      "newton_iters_mean": [
+        3.0,
+        4.0,
+        4.0
+      ],
+      "converged_frac": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "benchmark": "elasticity",
+      "N_paper": 972,
+      "paper_train_samples": 1000,
+      "paper_epochs": 10000,
+      "steps_per_epoch": 63,
+      "paper_total_train_steps": 630000,
+      "projected_wall_clock_s": 545391.0,
+      "projected_wall_clock_h": 151.5
+    },
+    {
+      "N_nodes": 16641,
+      "n_pou": 32,
+      "batch": 16,
+      "params": 47082167,
+      "step_times_s": [
+        12.4018,
+        8.8519,
+        11.5109
+      ],
+      "median_warm_step_s": 10.1814,
+      "newton_iters_mean": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "converged_frac": [
+        1.0,
+        1.0,
+        0.9375
+      ],
+      "benchmark": "pipe",
+      "N_paper": 16641,
+      "paper_train_samples": 1000,
+      "paper_epochs": 5000,
+      "steps_per_epoch": 63,
+      "paper_total_train_steps": 315000,
+      "projected_wall_clock_s": 3207141.0,
+      "projected_wall_clock_h": 890.9
+    }
+  ],
+  "failures": []
+}
