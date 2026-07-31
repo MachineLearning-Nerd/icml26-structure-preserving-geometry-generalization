@@ -1,0 +1,159 @@
+{
+  "description": "Claims 1 and 5 verified against the official Geo-NeW release.",
+  "environment": {
+    "cpu": "Apple M2",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.11.13",
+    "torch": "2.13.0",
+    "numpy": "2.4.6",
+    "skfem": "12.0.2",
+    "torch_threads": 4,
+    "repo_git_sha": "8d56f49b604ee2f4bbb65cbc2eb4abd124bdf2e9",
+    "upstream_geo_new_sha": "9c30e9320428c10c9a4721c19a9bc0a1639b6716"
+  },
+  "seed": 0,
+  "claim_1_feec_conservation": {
+    "per_P": [
+      {
+        "P": 3,
+        "n_edges": 3,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 4.440892098500626e-16,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 4,
+        "n_edges": 6,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 4.440892098500626e-16,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 5,
+        "n_edges": 10,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 8.881784197001252e-16,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 8,
+        "n_edges": 28,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 1.7763568394002505e-15,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 12,
+        "n_edges": 66,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 3.552713678800501e-15,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 16,
+        "n_edges": 120,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 3.552713678800501e-15,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 19,
+        "n_edges": 171,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 5.329070518200751e-15,
+        "entries_are_pm1": true,
+        "pass": true
+      },
+      {
+        "P": 35,
+        "n_edges": 595,
+        "delta0_times_ones_max_abs": 0,
+        "delta1_delta0_max_abs": 0,
+        "flux_global_imbalance_max_abs": 1.0658141036401503e-14,
+        "entries_are_pm1": true,
+        "pass": true
+      }
+    ],
+    "negative_control": {
+      "description": "single incidence entry perturbed by +1 at P=8",
+      "delta0_times_ones_max_abs": 1,
+      "flux_global_imbalance_max_abs": 2.628172091960546,
+      "tripped": true
+    },
+    "pass": true
+  },
+  "claim_5_exact_dirichlet": {
+    "per_seed": [
+      {
+        "seed": 0,
+        "N_nodes": 289,
+        "n_boundary_nodes": 64,
+        "max_boundary_abs_err": 0.0,
+        "mean_boundary_abs_err": 0.0,
+        "interior_pred_absmax": 0.12545692920684814,
+        "dtype": "torch.float32",
+        "pass": true
+      },
+      {
+        "seed": 1,
+        "N_nodes": 289,
+        "n_boundary_nodes": 64,
+        "max_boundary_abs_err": 0.0,
+        "mean_boundary_abs_err": 0.0,
+        "interior_pred_absmax": 0.18635280430316925,
+        "dtype": "torch.float32",
+        "pass": true
+      },
+      {
+        "seed": 2,
+        "N_nodes": 289,
+        "n_boundary_nodes": 64,
+        "max_boundary_abs_err": 0.0,
+        "mean_boundary_abs_err": 0.0,
+        "interior_pred_absmax": 0.11024919897317886,
+        "dtype": "torch.float32",
+        "pass": true
+      },
+      {
+        "seed": 3,
+        "N_nodes": 289,
+        "n_boundary_nodes": 64,
+        "max_boundary_abs_err": 0.0,
+        "mean_boundary_abs_err": 0.0,
+        "interior_pred_absmax": 0.16080240905284882,
+        "dtype": "torch.float32",
+        "pass": true
+      },
+      {
+        "seed": 4,
+        "N_nodes": 289,
+        "n_boundary_nodes": 64,
+        "max_boundary_abs_err": 0.0,
+        "mean_boundary_abs_err": 0.0,
+        "interior_pred_absmax": 0.1960490494966507,
+        "dtype": "torch.float32",
+        "pass": true
+      }
+    ],
+    "negative_control": {
+      "description": "unconstrained MLP on identical tokens/boundary data",
+      "max_boundary_abs_err": 2.81882643699646,
+      "tripped": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}
