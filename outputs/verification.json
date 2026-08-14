@@ -1,0 +1,31 @@
+{
+  "blocked_claim_checks": {
+    "2": true,
+    "3": true,
+    "4": true,
+    "6": true
+  },
+  "checks": {
+    "blocked_claim_records": true,
+    "branch_surface": true,
+    "claim_1_positive": true,
+    "claim_5_positive": true,
+    "claim_statuses": true,
+    "commit_identity": true,
+    "documentation_surface": true,
+    "hygiene": true,
+    "paper_identity": true,
+    "readme_contract": true,
+    "remote_name": true
+  },
+  "claim_statuses": {
+    "C1": "VERIFIED",
+    "C2": "BLOCKED",
+    "C3": "BLOCKED",
+    "C4": "BLOCKED",
+    "C5": "VERIFIED",
+    "C6": "BLOCKED"
+  },
+  "passed": true,
+  "repository": "icml26-structure-preserving-geometry-generalization"
+}

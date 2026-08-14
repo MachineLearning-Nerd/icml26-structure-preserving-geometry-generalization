@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "diff_check": true,
+    "no_stale_publication_state": true,
+    "project_name": true,
+    "source_pin": true,
+    "verification": true
+  },
+  "passed": true,
+  "producer_ran": false,
+  "repository": "icml26-structure-preserving-geometry-generalization"
+}
