@@ -1,0 +1,207 @@
+{
+  "claim_6": {
+    "candidate_threshold_is_paper_anchored": false,
+    "claim_id": "6",
+    "formal_claim_verdict": "BLOCKED",
+    "machine_falsifiable_as_written": false,
+    "minimum_preregistration_needed": [
+      "fixed angle grid and sample count",
+      "fixed error metric and aggregation",
+      "numeric meaningful/not-meaningful threshold",
+      "uncertainty rule at 20 and 30 degrees"
+    ],
+    "paper_predicate": "Transolver predictions cease to be meaningful beyond 20 degrees while Geo-NeW remains meaningful through 30 degrees.",
+    "reason": "The paper supplies no numerical predicate for 'meaningful'; the figure is qualitative and no raw per-angle values are released."
+  },
+  "formal_claim_verdicts_unchanged": {
+    "2": "BLOCKED",
+    "3": "BLOCKED",
+    "4": "BLOCKED",
+    "6": "BLOCKED"
+  },
+  "independent_checker": {
+    "checker": "independent invariant checker",
+    "failures": [],
+    "passed": true
+  },
+  "numeric_claims_have_executable_counterexamples": true,
+  "numeric_comparisons": {
+    "elasticity": {
+      "center_reduction_percent": "29.800",
+      "center_reduction_rounded_half_up": 30,
+      "claim_id": "3",
+      "comparator_display_interval": [
+        "0.00495",
+        "0.00505"
+      ],
+      "counterexample_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": false,
+        "observed_comparator": "0.0050",
+        "observed_reduction_percent": "-20.00",
+        "observed_target": "0.006000",
+        "reduction_rounds_to_reported_integer": false,
+        "target_matches_displayed_interval": false
+      },
+      "counterexample_rejected": true,
+      "paper_comparator": "0.0050",
+      "paper_reported_reduction_percent": 29,
+      "paper_target": "0.00351",
+      "positive_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": false,
+        "observed_comparator": "0.0050",
+        "observed_reduction_percent": "29.800",
+        "observed_target": "0.00351",
+        "reduction_rounds_to_reported_integer": false,
+        "target_matches_displayed_interval": true
+      },
+      "possible_rounded_reduction_integers": [
+        29,
+        30,
+        31
+      ],
+      "reduction_interval_percent": [
+        "28.98989898989898989898989899",
+        "30.59405940594059405940594059"
+      ],
+      "reported_reduction_compatible_with_display_precision": true,
+      "target_display_interval": [
+        "0.003505",
+        "0.003515"
+      ]
+    },
+    "ns2d_cpp_ood": {
+      "center_reduction_percent": "53.82932166301969365426695842",
+      "center_reduction_rounded_half_up": 54,
+      "claim_id": "4",
+      "comparator_display_interval": [
+        "0.91395",
+        "0.91405"
+      ],
+      "counterexample_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": false,
+        "observed_comparator": "0.9140",
+        "observed_reduction_percent": "-20.00",
+        "observed_target": "1.096800",
+        "reduction_rounds_to_reported_integer": false,
+        "target_matches_displayed_interval": false
+      },
+      "counterexample_rejected": true,
+      "paper_comparator": "0.9140",
+      "paper_reported_reduction_percent": 54,
+      "paper_target": "0.422",
+      "positive_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": true,
+        "observed_comparator": "0.9140",
+        "observed_reduction_percent": "53.82932166301969365426695842",
+        "observed_target": "0.422",
+        "reduction_rounds_to_reported_integer": true,
+        "target_matches_displayed_interval": true
+      },
+      "possible_rounded_reduction_integers": [
+        54
+      ],
+      "reduction_interval_percent": [
+        "53.77208818863176322555938509",
+        "53.88654887588206334445599256"
+      ],
+      "reported_reduction_compatible_with_display_precision": true,
+      "target_display_interval": [
+        "0.4215",
+        "0.4225"
+      ]
+    },
+    "pipe": {
+      "center_reduction_percent": "70.52631578947368421052631579",
+      "center_reduction_rounded_half_up": 71,
+      "claim_id": "2",
+      "comparator_display_interval": [
+        "0.00375",
+        "0.00385"
+      ],
+      "counterexample_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": false,
+        "observed_comparator": "0.0038",
+        "observed_reduction_percent": "-20.00",
+        "observed_target": "0.004560",
+        "reduction_rounds_to_reported_integer": false,
+        "target_matches_displayed_interval": false
+      },
+      "counterexample_rejected": true,
+      "paper_comparator": "0.0038",
+      "paper_reported_reduction_percent": 71,
+      "paper_target": "0.00112",
+      "positive_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": true,
+        "observed_comparator": "0.0038",
+        "observed_reduction_percent": "70.52631578947368421052631579",
+        "observed_target": "0.00112",
+        "reduction_rounds_to_reported_integer": true,
+        "target_matches_displayed_interval": true
+      },
+      "possible_rounded_reduction_integers": [
+        70,
+        71
+      ],
+      "reduction_interval_percent": [
+        "70.0",
+        "71.03896103896103896103896104"
+      ],
+      "reported_reduction_compatible_with_display_precision": true,
+      "target_display_interval": [
+        "0.001115",
+        "0.001125"
+      ]
+    },
+    "poly_poisson_ood": {
+      "center_reduction_percent": "53.47826086956521739130434783",
+      "center_reduction_rounded_half_up": 53,
+      "claim_id": "4",
+      "comparator_display_interval": [
+        "0.04595",
+        "0.04605"
+      ],
+      "counterexample_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": false,
+        "observed_comparator": "0.0460",
+        "observed_reduction_percent": "-20.00",
+        "observed_target": "0.055200",
+        "reduction_rounds_to_reported_integer": false,
+        "target_matches_displayed_interval": false
+      },
+      "counterexample_rejected": true,
+      "paper_comparator": "0.0460",
+      "paper_reported_reduction_percent": 53,
+      "paper_target": "0.0214",
+      "positive_control": {
+        "comparator_matches_displayed_interval": true,
+        "contract_accepts": true,
+        "observed_comparator": "0.0460",
+        "observed_reduction_percent": "53.47826086956521739130434783",
+        "observed_target": "0.0214",
+        "reduction_rounds_to_reported_integer": true,
+        "target_matches_displayed_interval": true
+      },
+      "possible_rounded_reduction_integers": [
+        53,
+        54
+      ],
+      "reduction_interval_percent": [
+        "53.31882480957562568008705114",
+        "53.63735070575461454940282302"
+      ],
+      "reported_reduction_compatible_with_display_precision": true,
+      "target_display_interval": [
+        "0.02135",
+        "0.02145"
+      ]
+    }
+  },
+  "scope": "decision-rule audit only; no model or benchmark evaluation"
+}

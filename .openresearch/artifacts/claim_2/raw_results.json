@@ -1,9 +1,9 @@
 {
-  "verdict": "BLOCKED",
   "missing_requirements": [
     "checkpoint",
     "preprocessing",
     "pipe_training"
   ],
-  "official_git_sha": "9c30e9320428c10c9a4721c19a9bc0a1639b6716"
+  "official_git_sha": "9c30e9320428c10c9a4721c19a9bc0a1639b6716",
+  "verdict": "BLOCKED"
 }

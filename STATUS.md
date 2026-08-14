@@ -1,15 +1,26 @@
-# Publication status
+# Audit status
 
-The additive claim-by-claim evidence release is published to the existing
-Hugging Face Space `DineshAI/RtnSbA5AUV` at exact revision
-`cd77f568e5ef0d62f3dd2bc3366dade64bbf4406`.
+This repository is the clean-room audit of *Structure-Preserving Learning
+Improves Geometry Generalization in Neural PDEs* (Geo-NeW), OpenReview
+`RtnSbA5AUV`, arXiv `2602.02788v2`.
 
-Status: **AWAITING LIVE JUDGE**
+| Claim | Status | Reason |
+| --- | --- | --- |
+| C1 — FEEC/Whitney exact conservation | `VERIFIED` | exact incidence identities, independent construction, and perturbation control pass |
+| C2 — Pipe benchmark | `BLOCKED` | official release lacks faithful preprocessing, training path, and checkpoint |
+| C3 — Elasticity benchmark | `BLOCKED` | official release lacks the FEM conversion, training path, and checkpoint |
+| C4 — Poly-Poisson / NS2d-c++ OOD | `BLOCKED` | custom OOD assets and trained models are absent |
+| C5 — exact Dirichlet boundary condition | `VERIFIED` | constrained parameterization passes seeded boundary and unconstrained negative-control checks |
+| C6 — angled-step generalization | `BLOCKED` | custom data/models are absent and “meaningful” is not numerically defined |
 
-- Previous judged revision: `8753eb9a662a446337f02a7773eddece8f64a3af`
-- Current judged score: 4/12
-- Validated experiment SHA: `45b2a55bdee067a4d9f71fb7ab76548fcf370987`
-- Formal verdicts: C1 and C5 VERIFIED; C2, C3, C4, and C6 BLOCKED
-- Score increase claimed: no
+The toy mechanism suite and source-only metric audit are supporting evidence
+only. They do not upgrade a blocked full-scale claim.
 
-The new CPU toy routes are labeled `TOY` and do not change the formal verdicts.
+The fixed reproduction command is:
+
+```bash
+uv sync --frozen && uv run python repro/src/run_all.py
+```
+
+See [`docs/CLAIM_EVIDENCE.md`](docs/CLAIM_EVIDENCE.md) for the claim-to-code
+map and [`docs/SOURCE_AUDIT.md`](docs/SOURCE_AUDIT.md) for provenance limits.

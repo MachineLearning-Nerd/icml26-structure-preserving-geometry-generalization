@@ -27,14 +27,39 @@
     "dataset_files": [],
     "weight_files": []
   },
+  "interpretation": "The public official release is a minimal forward/demo implementation. It does not contain the data, preprocessing, benchmark entrypoints, or checkpoints needed to decide Claims 2, 3, 4, or 6 faithfully.",
   "missing_requirements_by_claim": {
-    "2": ["checkpoint", "preprocessing", "pipe_training"],
-    "3": ["checkpoint", "preprocessing", "elasticity_training"],
-    "4": ["checkpoint", "preprocessing", "poly_ood_data", "ns2d_custom_data"],
-    "6": ["checkpoint", "ns2d_custom_data"]
+    "2": [
+      "checkpoint",
+      "preprocessing",
+      "pipe_training"
+    ],
+    "3": [
+      "checkpoint",
+      "preprocessing",
+      "elasticity_training"
+    ],
+    "4": [
+      "checkpoint",
+      "preprocessing",
+      "poly_ood_data",
+      "ns2d_custom_data"
+    ],
+    "6": [
+      "checkpoint",
+      "ns2d_custom_data"
+    ]
   },
   "negative_control_output": {
     "all_blockers_cleared": true,
+    "injected_paths": [
+      "checkpoints/pipe.pt",
+      "preprocessing/build_fem.py",
+      "train_pipe.py",
+      "train_elasticity.py",
+      "data/polypoisson_ood.pt",
+      "data/ns2d_angled_comsol.pt"
+    ],
     "remaining_blockers": {
       "2": [],
       "3": [],
@@ -55,5 +80,12 @@
     "src/nonlinear_solver.py",
     "src/utils.py"
   ],
-  "interpretation": "The pinned official release is a minimal demo and does not contain the assets needed to decide Claims 2, 3, 4, or 6 faithfully."
+  "path_matches_by_asset_class": {
+    "checkpoint": [],
+    "elasticity_training": [],
+    "ns2d_custom_data": [],
+    "pipe_training": [],
+    "poly_ood_data": [],
+    "preprocessing": []
+  }
 }

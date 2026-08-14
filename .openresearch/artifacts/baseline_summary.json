@@ -1,0 +1,59 @@
+{
+  "baseline_regressions": {
+    "claim_1": "VERIFIED",
+    "claim_5": "VERIFIED"
+  },
+  "claim_verdicts": {
+    "1": "VERIFIED",
+    "2": "BLOCKED",
+    "3": "BLOCKED",
+    "4": "BLOCKED",
+    "5": "VERIFIED",
+    "6": "BLOCKED"
+  },
+  "durations_seconds": {
+    "claim_1": 7.60834108304698,
+    "claim_5": 0.5346298749791458,
+    "falsifiability_audit": 0.26664995902683586,
+    "independent_tests": 6.90000050002709,
+    "release_asset_audit": 1.5263794999336824,
+    "source_metric_audit": 0.5494426669320092,
+    "toy_mechanism_suite": 13.050641000038013
+  },
+  "falsifiability_audit": {
+    "claim_6": "NOT_MACHINE_FALSIFIABLE_AS_WRITTEN",
+    "claims_2_3_4": "EXECUTABLE_COUNTEREXAMPLES_PASS",
+    "headline_verdicts_unchanged": true
+  },
+  "independent_tests": "PASS",
+  "metadata": {
+    "cpu_count": 8,
+    "deterministic_seeds": [
+      0
+    ],
+    "fixed_command": "uv sync --frozen && uv run python repro/src/run_all.py",
+    "git_branch": "master",
+    "git_sha": "4d3bf088811abf0a5f24f64e216afe2a128463e8",
+    "machine": "arm64",
+    "paper_source_sha256": "c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724",
+    "paper_source_url": "https://arxiv.org/e-print/2602.02788v2",
+    "paper_source_user_agent": "OpenResearch-Reproduction/1.0 (paper 2602.02788; project RtnSbA5AUV)",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "uv_lock_sha256": "a59f4564497e7a3509fe93ee541ca40c82ad2014fcf0dda4432f382f87ad89e1"
+  },
+  "release_asset_audit": "PASS",
+  "source_metric_audit": "PASS_AUDIT_ONLY",
+  "total_runtime_seconds": 48.62402933300473,
+  "toy_mechanism_suite": {
+    "claims": [
+      "2",
+      "3",
+      "4",
+      "6"
+    ],
+    "headline_verdicts_unchanged": true,
+    "scale_label": "TOY"
+  }
+}

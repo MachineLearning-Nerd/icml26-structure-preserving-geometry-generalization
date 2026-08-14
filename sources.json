@@ -1,0 +1,49 @@
+{
+  "paper": {
+    "title": "Structure-Preserving Learning Improves Geometry Generalization in Neural PDEs",
+    "short_name": "Geo-NeW",
+    "authors": [
+      "Benjamin D. Shaffer",
+      "Shawn Koohy",
+      "Brooks Kinch",
+      "M. Ani Hsieh",
+      "Nathaniel Trask"
+    ],
+    "arxiv_id": "2602.02788",
+    "arxiv_version": "v2",
+    "arxiv_url": "https://arxiv.org/abs/2602.02788",
+    "source_url": "https://arxiv.org/e-print/2602.02788v2",
+    "source_sha256": "c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724",
+    "openreview_id": "RtnSbA5AUV",
+    "openreview_url": "https://openreview.net/forum?id=RtnSbA5AUV",
+    "doi": "10.48550/arXiv.2602.02788"
+  },
+  "official_implementation": {
+    "repository": "PIMILab/Geo-NeW",
+    "url": "https://github.com/PIMILab/Geo-NeW",
+    "commit": "9c30e9320428c10c9a4721c19a9bc0a1639b6716",
+    "tree_url": "https://github.com/PIMILab/Geo-NeW/tree/9c30e9320428c10c9a4721c19a9bc0a1639b6716",
+    "scope": "minimal forward/demo implementation; no complete benchmark data, preprocessing, training entrypoints, or checkpoints"
+  },
+  "challenge": {
+    "name": "ICML 2026 Agent Reproduction Challenge",
+    "url": "https://huggingface.co/spaces/ICML-2026-agent-repro/challenge"
+  },
+  "external_context": {
+    "hugging_face_space": "https://huggingface.co/spaces/DineshAI/RtnSbA5AUV",
+    "role": "historical external publication context only; not canonical GitHub evidence"
+  },
+  "local_scope": {
+    "repository_before_rename": "MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation",
+    "repository_after_rename": "MachineLearning-Nerd/icml26-structure-preserving-geometry-generalization",
+    "canonical_branch": "main",
+    "claim_statuses": {
+      "C1": "VERIFIED",
+      "C2": "BLOCKED",
+      "C3": "BLOCKED",
+      "C4": "BLOCKED",
+      "C5": "VERIFIED",
+      "C6": "BLOCKED"
+    }
+  }
+}

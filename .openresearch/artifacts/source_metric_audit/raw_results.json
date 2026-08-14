@@ -1,0 +1,69 @@
+{
+  "paper": {
+    "title": "Structure-Preserving Learning Improves Geometry Generalization in Neural PDEs",
+    "arxiv_id": "2602.02788",
+    "arxiv_version": "v2"
+  },
+  "claim": "Achieves up to 65% MSE reduction compared with best-performing alternatives on out-of-distribution geometries.",
+  "empirical_claim_verdict": "NOT_DECIDED_BY_SOURCE_AUDIT",
+  "metric_contract": {
+    "claim_metric": "MSE",
+    "paper_metric": "mean per-sample normalized L2 error",
+    "same_metric": false,
+    "reason": "The paper averages per-sample normalized L2 norms. Squaring an aggregate mean L2 error is not the mean squared error and cannot recover unreported MSE."
+  },
+  "table_1_best_alternative_reductions": [
+    {
+      "benchmark": "Poly-Poisson OOD",
+      "reported_metric": "mean per-sample normalized L2 error (x1e-2)",
+      "geo_new": "2.14",
+      "best_alternative": "Linear Attention",
+      "best_alternative_error": "4.60",
+      "direct_l2_reduction_percent": "53.478261",
+      "squared_aggregate_proxy_percent": "78.357278",
+      "matches_65_percent": false
+    },
+    {
+      "benchmark": "NS2d-c++ OOD",
+      "reported_metric": "mean per-sample normalized L2 error (x1e-2)",
+      "geo_new": "42.2",
+      "best_alternative": "GNOT",
+      "best_alternative_error": "83.08",
+      "direct_l2_reduction_percent": "49.205585",
+      "squared_aggregate_proxy_percent": "74.199274",
+      "matches_65_percent": false
+    }
+  ],
+  "mild_extrapolation_text_result": {
+    "geo_new_normalized_l2_percent": "7.87",
+    "strongest_baseline_normalized_l2_percent": "13.1",
+    "direct_l2_reduction_percent": "39.923664",
+    "squared_aggregate_proxy_percent": "63.908339",
+    "proxy_distance_from_65_percentage_points": "1.091661"
+  },
+  "decisive_checks": {
+    "paper_reports_mse": false,
+    "paper_reports_numeric_65_percent": false,
+    "table_1_direct_best_baseline_reduction_is_65_percent": false,
+    "mild_regime_direct_reduction_is_65_percent": false,
+    "squaring_aggregate_l2_is_valid_mse_recovery": false
+  },
+  "interpretation": "The paper supports an OOD advantage in normalized L2 error, but the challenge's specific 65% MSE statement is not a reported or derivable statistic. This source audit does not verify or falsify model performance.",
+  "pinned_source_audit": {
+    "arxiv_id": "2602.02788",
+    "version": "v2",
+    "archive_sha256": "c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724",
+    "main_tex_sha256": "f51e45f1c59b12a63162c06f9579f8f7935f4687569b1c03bc4d6004a320c8d9",
+    "big_table_tex_sha256": "33287c1729cbed1960ea33f4568f682f55c15b3eb9eec167a689852a65db2fbd",
+    "figure_6_heatmap_sha256": "4fde9ab44992ab607eefa4664f2ac44b0c67910ec3396fc0146ffa6eb6fc68ec",
+    "fragment_checks": {
+      "metric_formula": true,
+      "mild_ood_values": true,
+      "poly_ood_row": true,
+      "geo_new_ood_values": true,
+      "gnot_ns2d_ood": true
+    },
+    "case_insensitive_mse_mentions_in_main_tex": 0,
+    "standalone_65_mentions_in_main_tex": 0
+  }
+}

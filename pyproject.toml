@@ -1,7 +1,7 @@
 [project]
-name = "icml26-repro-RtnSbA5AUV-geo-new-conservation"
+name = "icml26-structure-preserving-geometry-generalization"
 version = "0.1.0"
-description = "Clean-room repro of Geo-NeW (FEEC exact conservation in neural PDEs), ICML 2026, OpenReview RtnSbA5AUV."
+description = "Clean-room audit of Geo-NeW geometry generalization claims, ICML 2026, OpenReview RtnSbA5AUV."
 requires-python = ">=3.11,<3.13"
 dependencies = ["numpy", "scipy"]
 [tool.pytest.ini_options]

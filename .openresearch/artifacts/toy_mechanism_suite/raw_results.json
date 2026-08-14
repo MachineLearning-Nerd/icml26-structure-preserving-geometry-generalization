@@ -1,0 +1,229 @@
+{
+  "diagnostics": {
+    "2": {
+      "deviations": [
+        "analytic 1D profiles instead of the 2D standard Pipe dataset",
+        "scalar constitutive fit instead of Geo-NeW",
+        "affine direct regressor instead of LaMO",
+        "17 train and 15 test cases instead of 1000/200"
+      ],
+      "hard_boundary_max_abs": 0.0,
+      "learned_constitutive_scale": 1.0,
+      "task": "1D analytic parabolic profile; OOD pipe-height extrapolation",
+      "test_height_range": [
+        1.25,
+        1.6
+      ],
+      "train_height_range": [
+        0.8,
+        1.2
+      ]
+    },
+    "3": {
+      "deviations": [
+        "1D axial stress instead of the 2D Elasticity point-cloud benchmark",
+        "analytic reciprocal-area law instead of Geo-NeW",
+        "affine direct regressor instead of LaMO",
+        "25 train and 19 test cases instead of 1000/200"
+      ],
+      "learned_load": 1.0,
+      "task": "1D axial-bar derived stress over cross-sectional area",
+      "test_area_range": [
+        0.55,
+        1.45
+      ],
+      "train_area_range": [
+        0.7,
+        1.3
+      ]
+    },
+    "4": {
+      "deviations": [
+        "synthetic finite-difference data instead of the paper's processed FEM data",
+        "one learned scalar operator instead of Geo-NeW",
+        "mean-field template instead of Linear Attention",
+        "18 OOD cases rather than the paper's unreleased split"
+      ],
+      "grid_size": 29,
+      "learned_diffusivity": 1.0000000000000007,
+      "task": "finite-difference scalar Poisson with polygonal holes",
+      "test_polygon_sides": [
+        6,
+        7,
+        8
+      ],
+      "train_polygon_sides": [
+        3,
+        4
+      ]
+    },
+    "6": {
+      "deviations": [
+        "scalar Poisson instead of steady incompressible Navier-Stokes",
+        "synthetic finite-difference geometries instead of NS2d-c++ COMSOL/Gmsh",
+        "one learned scalar operator instead of Geo-NeW",
+        "linear angle extrapolation instead of Transolver",
+        "the 0.10 meaningful threshold is preregistered for this toy only"
+      ],
+      "grid_size": 29,
+      "last_meaningful_angle_degrees": {
+        "direct_angle_extrapolation_analogue": 25,
+        "structured_analogue": 30
+      },
+      "learned_diffusivity": 1.000000000000001,
+      "per_angle_errors": {
+        "15": {
+          "direct_angle_extrapolation_analogue": 0.03242184537548767,
+          "structured_analogue": 1.2569162055056096e-15,
+          "wrong_geometry_control": 0.12277202251704436
+        },
+        "20": {
+          "direct_angle_extrapolation_analogue": 0.058799807879943,
+          "structured_analogue": 1.1802770432408113e-15,
+          "wrong_geometry_control": 0.16830562446389377
+        },
+        "25": {
+          "direct_angle_extrapolation_analogue": 0.09806651874616334,
+          "structured_analogue": 1.1495669524503828e-15,
+          "wrong_geometry_control": 0.22397693733119287
+        },
+        "30": {
+          "direct_angle_extrapolation_analogue": 0.14647011097992158,
+          "structured_analogue": 1.0449868242632112e-15,
+          "wrong_geometry_control": 0.2894823369694279
+        }
+      },
+      "task": "finite-difference scalar Poisson on angled-step domains",
+      "test_angles_degrees": [
+        15.0,
+        20.0,
+        25.0,
+        30.0
+      ],
+      "toy_preregistered_meaningful_threshold_normalized_l2": 0.1,
+      "train_angles_degrees": [
+        0.0,
+        5.0,
+        10.0
+      ]
+    }
+  },
+  "formal_claim_verdicts_unchanged": {
+    "2": "BLOCKED",
+    "3": "BLOCKED",
+    "4": "BLOCKED",
+    "6": "BLOCKED"
+  },
+  "independent_checker": {
+    "checker": "independent toy-scope and invariant checker",
+    "failures": [],
+    "passed": true
+  },
+  "negative_controls_pass": {
+    "2": true,
+    "3": true,
+    "4": true,
+    "6": true
+  },
+  "scale_label": "TOY",
+  "scope": "mechanism analogues; not the paper benchmarks or models",
+  "seed": 20260202788,
+  "summary": {
+    "2": {
+      "damaged_geometry_control": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.5332227183997938,
+        "ci95_low": 0.4527419976014838,
+        "mean": 0.4913883408886861,
+        "n_cases": 15
+      },
+      "direct_affine_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.09985938470151835,
+        "ci95_low": 0.06635259149612634,
+        "mean": 0.08192245351793347,
+        "n_cases": 15
+      },
+      "structured_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "n_cases": 15
+      },
+      "structured_vs_direct_relative_reduction_percent": 100.0
+    },
+    "3": {
+      "damaged_constitutive_control": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.6110624999999998,
+        "ci95_low": 0.34301315789473674,
+        "mean": 0.4736842105263157,
+        "n_cases": 19
+      },
+      "direct_affine_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.09113974360268223,
+        "ci95_low": 0.03963790252542691,
+        "mean": 0.06278640746862962,
+        "n_cases": 19
+      },
+      "structured_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "mean": 0.0,
+        "n_cases": 19
+      },
+      "structured_vs_direct_relative_reduction_percent": 100.0
+    },
+    "4": {
+      "damaged_operator_control": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.4285714285714278,
+        "ci95_low": 0.4285714285714277,
+        "mean": 0.4285714285714278,
+        "n_cases": 18
+      },
+      "direct_template_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.48212657558701083,
+        "ci95_low": 0.24044752575022182,
+        "mean": 0.35789057129110646,
+        "n_cases": 18
+      },
+      "structured_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 6.949867539258923e-16,
+        "ci95_low": 6.732091965887335e-16,
+        "mean": 6.840998343106638e-16,
+        "n_cases": 18
+      },
+      "structured_vs_direct_relative_reduction_percent": 99.99999999999982
+    },
+    "6": {
+      "direct_angle_extrapolation_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.12455253520492693,
+        "ci95_low": 0.03901633600160151,
+        "mean": 0.0839395707453789,
+        "n_cases": 4
+      },
+      "structured_analogue": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 1.23775641493941e-15,
+        "ci95_low": 1.0788093790076112e-15,
+        "mean": 1.1579367563650037e-15,
+        "n_cases": 4
+      },
+      "structured_vs_direct_relative_reduction_percent": 99.99999999999864,
+      "wrong_geometry_control": {
+        "bootstrap_replicates": 2000,
+        "ci95_high": 0.25918815884304436,
+        "ci95_low": 0.1341554230037567,
+        "mean": 0.20113423032038974,
+        "n_cases": 4
+      }
+    }
+  }
+}

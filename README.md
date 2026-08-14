@@ -1,133 +1,184 @@
-# Claim-by-claim Geo-NeW reproduction (local CPU)
+# Structure-Preserving Geometry Generalization — ICML 2026
 
-> **Publication status:** Evidence is published to the existing
-> [Hugging Face logbook](https://huggingface.co/spaces/DineshAI/RtnSbA5AUV/tree/cd77f568e5ef0d62f3dd2bc3366dade64bbf4406)
-> at revision `cd77f568e5ef0d62f3dd2bc3366dade64bbf4406` and is **awaiting live
-> judge evaluation**. The current judged score remains 4/12; no increase is
-> claimed before a new verdict.
+Clean-room reproduction audit for **Geo-NeW** and the paper *Structure-Preserving
+Learning Improves Geometry Generalization in Neural PDEs*.
 
-This project tests six judged claims from *Structure-Preserving Learning
-Improves Geometry Generalization in Neural PDEs* (arXiv
-[2602.02788](https://arxiv.org/abs/2602.02788), OpenReview `RtnSbA5AUV`).
-The strongest result is architectural: exact FEEC conservation and exact
-Dirichlet enforcement both survive independent checkers and negative
-controls. The four trained benchmark claims remain **BLOCKED**, because the
-pinned official release does not include the required checkpoints, faithful
-preprocessors, benchmark entrypoints, or custom OOD data. No toy result is
-presented as full-scale evidence. Each unresolved claim now also has an
-executable falsification route and an explicitly `TOY` CPU mechanism test.
+- Canonical repository: [MachineLearning-Nerd/icml26-structure-preserving-geometry-generalization](https://github.com/MachineLearning-Nerd/icml26-structure-preserving-geometry-generalization)
+- Former repository: `icml26-repro-RtnSbA5AUV-geo-new-conservation`
+- Paper: [arXiv:2602.02788v2](https://arxiv.org/abs/2602.02788) · [OpenReview:RtnSbA5AUV](https://openreview.net/forum?id=RtnSbA5AUV)
+- Official implementation: [PIMILab/Geo-NeW](https://github.com/PIMILab/Geo-NeW) pinned at [`9c30e932`](https://github.com/PIMILab/Geo-NeW/tree/9c30e9320428c10c9a4721c19a9bc0a1639b6716)
 
-| Claim | Paper number / statement | Observed | Assessment |
-|---|---|---|---|
-| C1 conservation | exact | all exact residuals `0`; `1e-9` perturbation detected | **VERIFIED** |
-| C2 Pipe | `0.112e-2` vs `0.38e-2` | exact model unavailable; toy structured/direct `0` / `0.08192` | **BLOCKED** + TOY |
-| C3 Elasticity | `0.351e-2` vs `0.50e-2` | exact model unavailable; toy `0` / `0.06279` | **BLOCKED** + TOY |
-| C4 OOD pair | `2.14` vs `4.60`; `42.2` vs `91.40` | source audited; toy polygon OOD `6.84e-16` / `0.35789` | **BLOCKED** + TOY |
-| C5 boundary | `0.00` | `1.78e-15` vs `9.3071` control | **VERIFIED** |
-| C6 angles | Transolver past 20°; Geo-NeW through 30° | exact sweep unavailable; toy direct through 25°, structured through 30° | **BLOCKED** + TOY |
+## What this repository establishes
 
-Compute was the local 8-core arm64 CPU. The successful cumulative run took
-12.279662 seconds and cost $0; Hugging Face `cpu-upgrade` was not needed.
-The paper's H200 training was not downscaled into a proxy.
+The audit separates exact architectural properties from full benchmark claims.
+Two structural claims are reproducible from the clean-room implementation and
+independent controls. Four trained benchmark claims remain explicitly blocked
+because the public official release does not contain the required checkpoints,
+faithful preprocessors, or custom OOD data. Small CPU experiments are labeled
+`TOY`; they are mechanism illustrations and are never used as benchmark proof.
 
-Read the [illustrated technical report](reports/geo-new-claim-by-claim-2026-07-23/report.md)
-or the [self-contained marimo notebook](notebooks/geo_new_claims.py).
+| Claim | Paper claim | Local assessment | Evidence producer |
+| --- | --- | --- | --- |
+| C1 | FEEC/Whitney structure exactly preserves discrete conservation | **VERIFIED** | `repro/src/run_geo_new.py` + `repro/src/geo_new.py` |
+| C2 | Pipe benchmark: `0.112e-2` versus `0.38e-2` | **BLOCKED** | `repro/src/release_asset_audit.py` |
+| C3 | Elasticity benchmark: `0.351e-2` versus `0.50e-2` | **BLOCKED** | `repro/src/release_asset_audit.py` |
+| C4 | Poly-Poisson and NS2d-c++ OOD improvements | **BLOCKED** | `repro/src/release_asset_audit.py` |
+| C5 | Exact Dirichlet boundary enforcement | **VERIFIED** | `repro/src/verify_bc.py` |
+| C6 | Geo-NeW remains useful through the tested angled-step range | **BLOCKED** | `repro/src/release_asset_audit.py` |
 
-[![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/blob/master/notebooks/geo_new_claims.py)
+The machine-readable claim contracts and their limitations are in
+[`docs/CLAIM_EVIDENCE.md`](docs/CLAIM_EVIDENCE.md). The concise publication
+status is in [`STATUS.md`](STATUS.md).
 
-Local notebook commands:
+## How each claim is produced
+
+### C1 — exact FEEC conservation (`VERIFIED`)
+
+`geo_new.construct_delta0` builds the oriented complete-graph incidence used by
+the official implementation. `run_geo_new.py` checks, for several values of
+`P`, that `delta_0 @ 1` is exactly zero, checks global conservation over 150
+seeded random fluxes, checks the triangle identity `delta_1 @ delta_0 = 0`,
+cross-checks the edge set with an independently constructed incidence matrix,
+and applies a one-entry perturbation that must break conservation. The raw
+results, independent checker, and negative control are under
+`evidence/claim_1/`.
+
+This verifies the structural mechanism; it does not claim that a trained model
+matches every reported PDE error.
+
+### C2 — Pipe benchmark (`BLOCKED`)
+
+The paper reports a mean per-sample normalized-L2 error of `0.112e-2` for
+Geo-NeW versus `0.38e-2` for LaMO. The release-asset audit pins the official
+repository and checks for the standard data, Geo-NeW preprocessing, training
+entrypoint, and checkpoint. Those inputs are absent, so a faithful evaluation
+cannot be produced from this checkout. `evidence/claim_2/` records the exact
+contract, missing inputs, source anchor, and the non-vacuous synthetic-manifest
+control.
+
+### C3 — Elasticity benchmark (`BLOCKED`)
+
+The paper reports `0.351e-2` versus `0.50e-2`. The same audit requires the
+Elasticity data conversion to the paper's FEM/Whitney inputs, the exact training
+configuration, and a checkpoint or feasible faithful retraining. These are not
+released. The result remains `BLOCKED`, not an estimate based on a proxy;
+see `evidence/claim_3/`.
+
+### C4 — OOD benchmark pair (`BLOCKED`)
+
+The paper reports `2.14e-2` versus `4.60e-2` on Poly-Poisson OOD and `42.2e-2`
+versus `91.40e-2` on NS2d-c++ OOD. The custom processed data/generators,
+reference solves, and trained models are absent from the official release.
+The source-only arithmetic audit in
+[`docs/CLAIM2_OOD_METRIC_AUDIT.md`](docs/CLAIM2_OOD_METRIC_AUDIT.md) is useful
+provenance, but it does not decide model performance. The empirical status and
+missing-asset checks are in `evidence/claim_4/`.
+
+### C5 — exact Dirichlet boundary condition (`VERIFIED`)
+
+`verify_bc.py` uses seeded random network weights and 4,000 points on the
+boundary. It evaluates the paper-style constrained parameterization, checks
+that the boundary error is at numerical roundoff (`1.776e-15`), confirms a
+nontrivial interior field, and compares it with an unconstrained control whose
+maximum error is `9.3071`. The result and controls are in `evidence/claim_5/`.
+
+This verifies the boundary-enforcement mechanism, not the full benchmark
+accuracy claim.
+
+### C6 — angled-step generalization (`BLOCKED`)
+
+The paper's comparison says that Transolver degrades past 20 degrees while
+Geo-NeW remains useful through the tested 30-degree range. The exact custom
+NS2d-c++ data, reference solves, model checkpoints, and a numerical definition
+of “meaningful” are unavailable. The falsifiability and toy routes document
+what a valid future test would need; neither substitutes for the paper's
+experiment. See `evidence/claim_6/`.
+
+## Reproduce the audit
+
+Use Python 3.11 or 3.12 and the locked environment:
 
 ```bash
-uvx marimo edit notebooks/geo_new_claims.py
-uvx marimo run notebooks/geo_new_claims.py
+uv sync --frozen
+uv run python repro/src/run_all.py
+uv run python -m pytest -q repro/tests/
 ```
 
-## Experiment log
-
-| Branch / experiment | Purpose | Exact run command | Assessment / outcome | Compute |
-|---|---|---|---|---|
-| `master` | publication surface | Not run as an experiment (publication surface) | landing page only | — |
-| [`orx/validated-4-12-baseline`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/validated-4-12-baseline) | freeze existing verified claims and uv lock | `uv sync --frozen && uv run python repro/src/run_all.py` | C1/C5 pass; 10 tests | local CPU |
-| [`orx/exact-claim-contracts-and-public-asset-audit`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/exact-claim-contracts-and-public-asset-audit) | exact contracts and public-release audit | `uv sync --frozen && uv run python repro/src/run_all.py` | C1/C5 VERIFIED; C2/C3/C4/C6 BLOCKED; 13 tests | local CPU |
-| [`orx/durable-evidence-and-release-candidate`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/durable-evidence-and-release-candidate) | durable artifacts, report, notebook, additive Space candidate | `uv sync --frozen && uv run python repro/src/run_all.py` | release-gate rerun | local CPU |
-| [`orx/preregistered-falsifiability-and-counterexample`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/preregistered-falsifiability-and-counterexample) | executable numeric contracts and counterexamples | `uv sync --frozen && uv run python repro/src/run_all.py` | C2–C4 counterexamples rejected; C6 underdefined; 18 tests | local CPU |
-| [`orx/cpu-toy-geometry-mechanism-suite`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/cpu-toy-geometry-mechanism-suite) | four explicit toy mechanism analogues | `uv sync --frozen && uv run python repro/src/run_all.py` | all controls pass; formal verdicts unchanged; 17 tests | local CPU |
-| [`orx/integrated-multi-route-evidence-candidate`](https://github.com/MachineLearning-Nerd/icml26-repro-RtnSbA5AUV-geo-new-conservation/tree/orx/integrated-multi-route-evidence-candidate) | integrate exact, falsifiability, and toy routes | `uv sync --frozen && uv run python repro/src/run_all.py` | cumulative final rerun | local CPU |
-
-Fixed reproduction:
+`run_all.py` downloads arXiv `2602.02788v2`, verifies its SHA-256, runs the
+C1/C5 producers, the source metric audit, the official-release asset audit,
+the explicitly `TOY` mechanism suite, the falsifiability checks, and the
+independent tests. C1 and C5 can also be run without the paper archive:
 
 ```bash
-uv sync --frozen && uv run python repro/src/run_all.py
+uv run python repro/src/run_geo_new.py
+uv run python repro/src/verify_bc.py
 ```
 
-The environment is locked by `uv.lock`. Claim contracts, raw evidence,
-independent checker output, controls, and limitations are under
-`.openresearch/artifacts/`.
+After the evidence is generated, the repository integrity checks are:
 
-## Historical upstream README
-
-> The material below is retained for provenance. Its earlier
-> “FALSIFIED AS WRITTEN” label applied to a separate 65%-MSE wording audit,
-> not to the six empirical claims evaluated above. The current empirical
-> verdict for the OOD benchmark claim is `BLOCKED`.
-
-# Repro — Geo-NeW: FEEC Conservation and OOD Metric Audit (RtnSbA5AUV)
-
-Clean-room reproduction of *Structure-Preserving Learning Improves Geometry Generalization in
-Neural PDEs* (Geo-NeW; Shaffer, Koohy, Kinch, Hsieh, Trask; arXiv [2602.02788](https://arxiv.org/abs/2602.02788)),
-for the [ICML 2026 Agent Reproduction Challenge](https://huggingface.co/spaces/ICML-2026-agent-repro/challenge).
-OpenReview `RtnSbA5AUV`.
-
-**Claim C1 (exact conservation via FEEC).** The discrete Whitney/incidence structure (complete-graph
-incidence `δ₀` on P control volumes) exactly preserves physical conservation laws for **any**
-partition-of-unity (no training):
-- `δ₀·1 = 0` (integer-exact) — the incidence structure.
-- Global mass conservation: `1ᵀδ₀ᵀF = (δ₀1)ᵀF = 0` for any edge flux `F`.
-- FEEC exact sequence `d²=0`: `δ₁δ₀ = 0` (boundary of a boundary is zero).
-
-**Claim C2 (up to 65% MSE reduction on OOD geometries).** A SHA-pinned audit of the camera-ready
-arXiv source finds that the paper reports mean per-sample normalized L2 error, not MSE, and contains
-no numeric 65% result. Recomputing the reported values against each best-performing alternative gives
-53.478261% (Poly-Poisson OOD) and 49.205585% (NS2d-c++ OOD) reductions in normalized L2 error. The
-claim is therefore **falsified as written**; the paper's broader OOD-advantage conclusion remains
-supported by its reported normalized-L2 results.
-
-## Results (all CPU, integer-exact)
-
-| Claim | Verdict | Headline evidence |
-|---|---|---|
-| **C1** exactly preserves conservation laws via FEEC | **VERIFIED** | `δ₀·1=0` integer-exact; global mass conservation `1ᵀδ₀ᵀF=0` over 150 random fluxes (max 0.0); FEEC `δ₁δ₀=0` integer-exact; manual-incidence cross-check; perturbation negative control. |
-| **C2** up to 65% MSE reduction on OOD geometries | **FALSIFIED AS WRITTEN** | Pinned TeX defines normalized L2, not MSE; 0 MSE mentions and 0 standalone 65 mentions; exact best-baseline reductions are 53.478261% and 49.205585%. |
-
-10/10 pytest tests pass with the pinned arXiv archive (one source-integrity test skips without it).
-
-## Reproduce
 ```bash
-uv venv --python 3.12 .venv && source .venv/bin/activate
-uv pip install numpy scipy pytest
-python repro/src/run_geo_new.py
-curl -L -o /tmp/2602.02788v2.tar https://arxiv.org/e-print/2602.02788v2
-python repro/src/run_ood_metric_audit.py --source-tar /tmp/2602.02788v2.tar
-python -m pytest repro/tests/ --geo-new-source-tar /tmp/2602.02788v2.tar
+python3 repro/src/verify_results.py
+python3 repro/src/publication_gate.py --skip-producers
 ```
 
-## Verification method
-- `δ₀·1=0` (integer-exact), cross-checked against an independent manual complete-graph incidence.
-- Global conservation `1ᵀδ₀ᵀF=0` for arbitrary / antisymmetric fluxes (internal fluxes cancel telescopically).
-- FEEC `δ₁δ₀=0` on a triangle mesh (discrete `∇×(∇·)=0`).
-- Negative control: perturbing `δ₀` breaks `δ₀·1=0`.
-- C2 source-integrity check: the arXiv v2 e-print must match SHA-256
-  `c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724`.
-- C2 metric-contract check: source formula and table/text values are verified before recomputing
-  direct reductions and the explicitly invalid squared-aggregate proxy.
+## Repository contents
 
-## Scope & honest disclosures
-- C1 (FEEC conservation) is verified exactly and holds for any partition-of-unity (no training).
-- C2 is falsified as written from the paper's pinned source. This is a metric/value falsification,
-  not an independent source-scale retraining: the official repository does not publish its named
-  Poly-Poisson data file, OOD dataset, checkpoints, baseline outputs, or raw Figure 6 values.
-- Official code `PIMILab/Geo-NeW` (`construct_delta0` in `src/utils.py`) builds exactly this complete-graph incidence; clean-room numpy reproduces it.
+- `repro/src/` — clean-room producers, source audits, asset inventory, toy route, and falsifiability route.
+- `repro/tests/` — independent checks and negative controls.
+- `evidence/` — committed claim contracts, methods, source audits, raw results, and controls.
+- `docs/` — claim ledger, source boundary, branch audit, research log, and publication gate.
+- `reports/` — the historical illustrated claim-by-claim report; its toy results remain labeled `TOY`.
+- `notebooks/` — an optional marimo presentation of the claim evidence.
+- `release/` and `pages/` — historical external-publication artifacts retained for provenance; they are not required inputs for the local gate.
 
-Detailed C2 evidence: [`docs/CLAIM2_OOD_METRIC_AUDIT.md`](docs/CLAIM2_OOD_METRIC_AUDIT.md).
+## Branch map
 
-Logbook: https://huggingface.co/spaces/DineshAI/RtnSbA5AUV
+The public branch names are normalized and describe their purpose. The old
+`orx/` names are recorded only for provenance in
+[`docs/BRANCH_AUDIT.md`](docs/BRANCH_AUDIT.md).
+
+| Final branch | Former branch | Purpose |
+| --- | --- | --- |
+| `main` | `master` | integrated publication surface and current claim ledger |
+| `baseline/validated-4-12` | `orx/validated-4-12-baseline` | freeze the first validated C1/C5 baseline |
+| `audit/exact-claim-contracts` | `orx/exact-claim-contracts-and-public-asset-audit` | claim contracts and public-asset inventory |
+| `release/durable-evidence-candidate` | `orx/durable-evidence-and-release-candidate` | durable evidence and release packaging |
+| `audit/falsifiability-counterexamples` | `orx/preregistered-falsifiability-and-counterexample` | executable counterexamples and C6 identifiability |
+| `experiment/toy-geometry-mechanisms` | `orx/cpu-toy-geometry-mechanism-suite` | explicitly downscaled CPU mechanism analogues |
+| `release/integrated-evidence-candidate` | `orx/integrated-multi-route-evidence-candidate` | integrated exact, falsifiability, and toy evidence |
+| `audit/official-code-reachability` | `orx/official-code-cost-and-reachability` | official-code structure and benchmark reachability audit |
+
+## Source and evidence boundary
+
+The paper source is pinned to arXiv `2602.02788v2` with SHA-256
+`c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724`. The
+official code is audited at commit
+`9c30e9320428c10c9a4721c19a9bc0a1639b6716`. The historical Hugging Face Space
+[`DineshAI/RtnSbA5AUV`](https://huggingface.co/spaces/DineshAI/RtnSbA5AUV)
+is external context, not a substitute for a GitHub checkpoint or dataset.
+
+No full-scale trained benchmark result is claimed unless the exact data,
+preprocessing, model, split, metric, and evaluation protocol are available.
+
+## Citation
+
+```bibtex
+@article{shaffer2026structure,
+  title         = {Structure-Preserving Learning Improves Geometry Generalization in Neural PDEs},
+  author        = {Benjamin D. Shaffer and Shawn Koohy and Brooks Kinch and M. Ani Hsieh and Nathaniel Trask},
+  journal       = {arXiv preprint arXiv:2602.02788},
+  year          = {2026},
+  doi           = {10.48550/arXiv.2602.02788},
+  eprint        = {2602.02788},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+```
+
+## Thank you
+
+Thank you to Benjamin D. Shaffer, Shawn Koohy, Brooks Kinch, M. Ani Hsieh,
+and Nathaniel Trask for sharing the Geo-NeW implementation and the paper's
+architectural details. This audit is intended as a respectful, traceable
+reproduction record: it reports what can be checked from public artifacts and
+leaves the remaining claims blocked where those artifacts are insufficient.

@@ -1,18 +1,17 @@
 {
   "cpu_count": 8,
-  "deterministic_seeds": [0],
+  "deterministic_seeds": [
+    0
+  ],
   "fixed_command": "uv sync --frozen && uv run python repro/src/run_all.py",
-  "git_branch": "orx/exact-claim-contracts-and-public-asset-audit",
-  "git_sha": "5533c695765767ab00cffd30bce03e19420c0781",
+  "git_branch": "master",
+  "git_sha": "4d3bf088811abf0a5f24f64e216afe2a128463e8",
   "machine": "arm64",
   "paper_source_sha256": "c88523e66a538dc8001be383172f919aeac9e359e3c2294a26889c6ffc0ed724",
   "paper_source_url": "https://arxiv.org/e-print/2602.02788v2",
   "paper_source_user_agent": "OpenResearch-Reproduction/1.0 (paper 2602.02788; project RtnSbA5AUV)",
   "platform": "macOS-26.5.2-arm64-arm-64bit",
   "processor": "arm",
-  "python": "3.12.11",
-  "uv_lock_sha256": "20e2834e8dc1dcd2d1828c695d0e79fc5f3cdedb0f494733ca4c0c2f9d7f4057",
-  "run_id": "bc430eb2-ddfb-4bee-9711-de47f41cf4e5",
-  "total_runtime_seconds": 12.279662166023627,
-  "compute_cost_usd": 0.0
+  "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+  "uv_lock_sha256": "a59f4564497e7a3509fe93ee541ca40c82ad2014fcf0dda4432f382f87ad89e1"
 }

@@ -173,12 +173,12 @@ interpretation: the exact benchmark claims remain `BLOCKED`.
 
 | Node | Branch | Purpose | Outcome |
 |---|---|---|---|
-| Validated baseline | `orx/validated-4-12-baseline` | freeze accepted C1/C5 evidence and uv lock | done, 10 tests |
-| Claim contracts / asset audit | `orx/exact-claim-contracts-and-public-asset-audit` | exact contracts, release inventory, cumulative regressions | done, 13 tests |
-| Durable release candidate | `orx/durable-evidence-and-release-candidate` | package evidence, report, notebook, additive logbook | final gate node |
-| Falsifiability route | `orx/preregistered-falsifiability-and-counterexample` | numeric contracts, injected counterexamples, C6 identifiability | done, 18 tests |
-| CPU toy route | `orx/cpu-toy-geometry-mechanism-suite` | four downscaled mechanism analogues | done, 17 tests |
-| Integrated candidate | `orx/integrated-multi-route-evidence-candidate` | cumulative exact + falsifiability + toy evidence | final rerun node |
+| Validated baseline | `baseline/validated-4-12` (formerly `orx/validated-4-12-baseline`) | freeze accepted C1/C5 evidence and uv lock | done, 10 tests |
+| Claim contracts / asset audit | `audit/exact-claim-contracts` (formerly `orx/exact-claim-contracts-and-public-asset-audit`) | exact contracts, release inventory, cumulative regressions | done, 13 tests |
+| Durable release candidate | `release/durable-evidence-candidate` (formerly `orx/durable-evidence-and-release-candidate`) | package evidence, report, notebook, additive logbook | final gate node |
+| Falsifiability route | `audit/falsifiability-counterexamples` (formerly `orx/preregistered-falsifiability-and-counterexample`) | numeric contracts, injected counterexamples, C6 identifiability | done, 18 tests |
+| CPU toy route | `experiment/toy-geometry-mechanisms` (formerly `orx/cpu-toy-geometry-mechanism-suite`) | four downscaled mechanism analogues | done, 17 tests |
+| Integrated candidate | `release/integrated-evidence-candidate` (formerly `orx/integrated-multi-route-evidence-candidate`) | cumulative exact + falsifiability + toy evidence | final rerun node |
 
 Successful evidence run `bc430eb2-ddfb-4bee-9711-de47f41cf4e5` used Git
 `5533c695765767ab00cffd30bce03e19420c0781`, Python 3.12.11, seed 0,

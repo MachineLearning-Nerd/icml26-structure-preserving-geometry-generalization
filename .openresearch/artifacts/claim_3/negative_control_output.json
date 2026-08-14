@@ -1,5 +1,13 @@
 {
   "all_blockers_cleared": true,
+  "injected_paths": [
+    "checkpoints/pipe.pt",
+    "preprocessing/build_fem.py",
+    "train_pipe.py",
+    "train_elasticity.py",
+    "data/polypoisson_ood.pt",
+    "data/ns2d_angled_comsol.pt"
+  ],
   "remaining_blockers": {
     "2": [],
     "3": [],
